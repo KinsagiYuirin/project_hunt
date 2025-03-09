@@ -1,9 +1,9 @@
 using System;
-using Yuirin.Scripts.Utils;
+using MadDuck.Scripts.Utils;
 using UnityEditor.Timeline.Actions;
-using Yuirin.Scripts.Character;
+using MadDuck.Scripts.Character;
 
-namespace Yuirin.Scripts.Character
+namespace MadDuck.Scripts.Character
 {
     public abstract class CharacterStates
     {

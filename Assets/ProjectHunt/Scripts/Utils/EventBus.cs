@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Yuirin.Scripts.Utils
+namespace MadDuck.Scripts.Utils
 {
     /// <summary>
     /// Inherit from this interface to handle events from the EventBus.

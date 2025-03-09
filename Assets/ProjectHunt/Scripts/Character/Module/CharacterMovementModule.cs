@@ -1,8 +1,8 @@
 using TriInspector;
 using UnityEngine;
-using Yuirin.Scripts.Character.Module;
+using MadDuck.Scripts.Character.Module;
 
-namespace Yuirin.Scripts.Character.Module
+namespace MadDuck.Scripts.Character.Module
 {
     /// <summary>
     /// Module responsible for handling character movement.
@@ -37,11 +37,6 @@ namespace Yuirin.Scripts.Character.Module
                 spriteRenderer.flipX = shouldFlip;
             }
         }
-    
-        private void OnSpriteFlip(bool oldValue, bool newValue)
-        {
-            spriteRenderer.flipX = newValue;
-        }
 
         protected override void UpdateModule()
         {
@@ -58,10 +53,10 @@ namespace Yuirin.Scripts.Character.Module
         {
             moveDirection = direction;
             moveDirection.Normalize();
-            CharacterStates.MovementStateEvent.Invoke(characterHub, characterHub.MovementState,
-                moveDirection.magnitude > 0
-                    ? CharacterStates.CharacterMovementState.Walking
-                    : CharacterStates.CharacterMovementState.Idle);
+            var state = moveDirection.magnitude > 0
+                ? CharacterStates.CharacterMovementState.Walking
+                : CharacterStates.CharacterMovementState.Idle;
+            characterHub.ChangeMovementState(state);
         }
         
         protected override void HandleInput()

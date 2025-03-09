@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using Yuirin.Scripts.Character;
+using MadDuck.Scripts.Character;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Yuirin.Scripts.Character.Module;
-using Yuirin.Scripts.Utils;
+using MadDuck.Scripts.Character.Module;
+using MadDuck.Scripts.Utils;
 
-namespace Yuirin.Scripts.Character
+namespace MadDuck.Scripts.Character
 {
     public enum CharacterType
     {
@@ -18,10 +18,7 @@ namespace Yuirin.Scripts.Character
     ///  Character hub is the main class that manages the character and its modules.
     /// </summary>
     [DeclareTabGroup("Debug Tab")]
-    public class CharacterHub : MonoBehaviour, 
-        IEventBusHandler<CharacterStates.MovementStateEvent>,
-        IEventBusHandler<CharacterStates.ActionStateEvent>,
-        IEventBusHandler<CharacterStates.ConditionStateEvent>
+    public class CharacterHub : MonoBehaviour
     {
         [InfoBox("Character Hub is the main class that manages the character and its modules.")]
         #region Inspector
@@ -54,17 +51,17 @@ namespace Yuirin.Scripts.Character
         
         #region Properties
         public PlayerInput PlayerInput { get; private set; }
+        protected bool initialized;
+        public bool Initialized => initialized;
         #endregion
-        
-        /*
+
         #region Life Cycle
-        public override void OnNetworkSpawn()
+        public void Start()
         {
             Initialize();
             Subscribe();
         }
-        */
-        
+
         /// <summary>
         /// Initializes the character hub and its modules.
         /// </summary>
@@ -86,6 +83,7 @@ namespace Yuirin.Scripts.Character
             {
                 Debug.LogError($"{nameof(PlayerInput)} component not found in player object.");
             }
+            initialized = true;
         }
 
         /// <summary>
@@ -93,9 +91,7 @@ namespace Yuirin.Scripts.Character
         /// </summary>
         protected virtual void Subscribe()
         {
-            this.Subscribe<CharacterStates.MovementStateEvent>();
-            this.Subscribe<CharacterStates.ActionStateEvent>();
-            this.Subscribe<CharacterStates.ConditionStateEvent>();
+            
         }
         
         /// <summary>
@@ -107,6 +103,7 @@ namespace Yuirin.Scripts.Character
             {
                 module.Shutdown();
             }
+            initialized = false;
         }
 
         /// <summary>
@@ -114,34 +111,41 @@ namespace Yuirin.Scripts.Character
         /// </summary>
         protected virtual void Unsubscribe()
         {
-            this.Unsubscribe<CharacterStates.MovementStateEvent>();
-            this.Unsubscribe<CharacterStates.ActionStateEvent>();
-            this.Unsubscribe<CharacterStates.ConditionStateEvent>();
+            
         }
 
         public void OnDestroy()
         {
+            //base.OnDestroy();
             Shutdown();
             Unsubscribe();
         }
+        #endregion
         
         #region Event Handlers
-        public void OnHandleEvent(CharacterStates.MovementStateEvent eventData)
+        
+        #endregion
+        
+        #region States
+        public void ChangeMovementState(CharacterStates.CharacterMovementState newState)
         {
-            if (eventData.characterHub != this) return;
-            MovementState = eventData.newState;
+            if (newState == MovementState) return;
+            CharacterStates.MovementStateEvent.Invoke(this, MovementState, newState);
+            MovementState = newState;
         }
-
-        public void OnHandleEvent(CharacterStates.ActionStateEvent eventData)
+        
+        public void ChangeActionState(CharacterStates.CharacterActionState newState)
         {
-            if (eventData.characterHub != this) return;
-            ActionState = eventData.newState;
+            if (newState == ActionState) return;
+            CharacterStates.ActionStateEvent.Invoke(this, ActionState, newState);
+            ActionState = newState;
         }
-
-        public void OnHandleEvent(CharacterStates.ConditionStateEvent eventData)
+        
+        public void ChangeConditionState(CharacterStates.CharacterConditionState newState)
         {
-            if (eventData.characterHub != this) return;
-            ConditionState = eventData.newState;
+            if (newState == ConditionState) return;
+            CharacterStates.ConditionStateEvent.Invoke(this, ConditionState, newState);
+            ConditionState = newState;
         }
         #endregion
 
@@ -156,6 +160,6 @@ namespace Yuirin.Scripts.Character
             return modules.Where(module => module is T).Cast<T>().FirstOrDefault();
         }
         #endregion
-    }  
+    }
 }
 

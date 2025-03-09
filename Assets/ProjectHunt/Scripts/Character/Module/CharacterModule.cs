@@ -4,7 +4,7 @@ using TriInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Yuirin.Scripts.Character.Module
+namespace MadDuck.Scripts.Character.Module
 {
     /// <summary>
     /// Inheritable character module class

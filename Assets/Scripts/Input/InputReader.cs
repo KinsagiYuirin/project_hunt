@@ -1,0 +1,62 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using static Controls;
+
+[CreateAssetMenu(fileName = "InputReader", menuName = "Input/Input Reader")]
+public class InputReader : ScriptableObject, IPlayerActions
+{
+    public event Action<InputAction.CallbackContext> MoveEvent;
+    public event Action<InputAction.CallbackContext> AttackEvent;
+    
+    private Controls _controls;
+    
+    private void OnEnable()
+    {
+        if (_controls == null)
+        {
+            _controls = new Controls();
+            _controls.Player.SetCallbacks(this);
+        }
+        
+        _controls?.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controls?.Player.Disable();
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        MoveEvent?.Invoke(context);
+    }
+
+    public void OnLightAttack(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnDodge(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnBlock(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        AttackEvent?.Invoke(context);
+    }
+}
+

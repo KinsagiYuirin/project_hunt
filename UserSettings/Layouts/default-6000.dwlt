@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 169
+  controlID: 119
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 22
+  controlID: 26
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 54
+  controlID: 70
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 0.1176084, y: -0.6342832, z: 0.07872308}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1111,15 +1111,15 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
     m_Target: 10
     speed: 2
-    m_Value: 2.127678
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 0.3483001
     m_SpeedNormalized: 0.17000005
@@ -1360,7 +1360,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6afaffff84faffff
+      m_ExpandedIDs: 10f3ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1442,16 +1442,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 55
   m_LastFolders:
-  - Assets/DungeonTogether/Prefabs/Player
+  - Assets
   m_LastFoldersGridSize: 55
-  m_LastProjectPath: C:\Yuirin\All Work\Semester3.2_GI332_Network\Dungeon-Together
+  m_LastProjectPath: C:\Yuirin\All Work\Semester3.2_GI383_IdeaGen\project_hunt
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 150.99908}
-    m_SelectedIDs: f2200100
-    m_LastClickedID: 73970
-    m_ExpandedIDs: 
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 5ca50000
+    m_LastClickedID: 42332
+    m_ExpandedIDs: 00000000baa40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1480,7 +1480,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 00000000baa40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: b0420100d0d60000f0ec01004a690200f86a0100acdbfeff40d1feff62590100e0710000da820000b2820000e87400002a72000000000000ae020000940a010058150100cc340100
     m_RenameOverlay:
       m_UserAcceptedRename: 0

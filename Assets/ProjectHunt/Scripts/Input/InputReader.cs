@@ -9,7 +9,10 @@ using static Controls;
 public class InputReader : ScriptableObject, IPlayerActions
 {
     public event Action<InputAction.CallbackContext> MoveEvent;
-    public event Action<InputAction.CallbackContext> AttackEvent;
+    public event Action<InputAction.CallbackContext> LightAttackEvent;
+    public event Action<InputAction.CallbackContext> HeavyAttackEvent;
+    public event Action<InputAction.CallbackContext> DodgeEvent;
+    public event Action<InputAction.CallbackContext> BlockEvent;
     
     private Controls _controls;
     
@@ -36,27 +39,22 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        LightAttackEvent?.Invoke(context);
     }
 
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        HeavyAttackEvent?.Invoke(context);
     }
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        DodgeEvent?.Invoke(context);
     }
 
     public void OnBlock(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
-    }
-
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        AttackEvent?.Invoke(context);
+        BlockEvent?.Invoke(context);
     }
 }
 

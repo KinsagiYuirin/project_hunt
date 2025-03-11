@@ -20,6 +20,8 @@ namespace MadDuck.Scripts.Character.Module
     {
         [Title("Health Settings")] 
         [SerializeField]
+        public bool iFrame;
+        [SerializeField]
         private HealthData healthData = new HealthData();
         [SerializeField] 
         private float startingHealth = 100;
@@ -41,7 +43,10 @@ namespace MadDuck.Scripts.Character.Module
         private void TestChangeHealth() => ChangeHealth(testAmount);
         private float _previousChange;
 
-        
+        private void Start()
+        {
+            iFrame = false;
+        }
 
         private void OnHealthDataChanged(HealthData previousvalue, HealthData newvalue)
         {
@@ -51,6 +56,7 @@ namespace MadDuck.Scripts.Character.Module
 
         public virtual void ChangeHealth(float amount)
         {
+            if (iFrame) return;
             if (!ModulePermitted) return;
             if (healthData.invincible) return;
             _previousChange = amount;

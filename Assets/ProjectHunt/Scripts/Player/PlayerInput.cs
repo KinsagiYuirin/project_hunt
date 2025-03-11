@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -23,19 +24,28 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MovementInput => movementInput;
     [SerializeField, ReadOnly] private InputButton attackButton;
     public InputButton AttackButton => attackButton;
+    
+    [SerializeField, ReadOnly] private InputButton dodgeButton;
+    public InputButton DodgeButton => dodgeButton;
 
     #region Subscriptions
 
     private void Subscribe()
     {
         inputReader.MoveEvent += HandleMove;
-        inputReader.AttackEvent += HandleAttack;
+        inputReader.LightAttackEvent += HandleLightAttack;
+        inputReader.HeavyAttackEvent += HandleHeavyAttack;
+        inputReader.DodgeEvent += HandleDodge;
+        inputReader.BlockEvent += HandleBlock;
     }
     
     private void Unsubscribe()
     {
         inputReader.MoveEvent -= HandleMove;
-        inputReader.AttackEvent -= HandleAttack;
+        inputReader.LightAttackEvent -= HandleLightAttack;
+        inputReader.HeavyAttackEvent -= HandleHeavyAttack;
+        inputReader.DodgeEvent -= HandleDodge;
+        inputReader.BlockEvent -= HandleBlock;
     }
     private void OnEnable()
     {
@@ -62,7 +72,22 @@ public class PlayerInput : MonoBehaviour
     {
         movementInput = context.ReadValue<Vector2>();
     }
-    private void HandleAttack(InputAction.CallbackContext context)
+    private void HandleLightAttack(InputAction.CallbackContext context)
+    {
+        BindButton(attackButton, context);
+    }
+    
+    private void HandleHeavyAttack(InputAction.CallbackContext context)
+    {
+        BindButton(attackButton, context);
+    }
+    
+    private void HandleDodge(InputAction.CallbackContext context)
+    {
+        BindButton(dodgeButton, context);
+    }
+    
+    private void HandleBlock(InputAction.CallbackContext context)
     {
         BindButton(attackButton, context);
     }

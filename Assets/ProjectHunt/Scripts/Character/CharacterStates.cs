@@ -10,7 +10,8 @@ namespace MadDuck.Scripts.Character
         public enum CharacterMovementState
         {
             Idle,
-            Walking
+            Walking,
+            Dodge
         }
 
         public struct MovementStateEvent

@@ -130,6 +130,13 @@ namespace MadDuck.Scripts.Character.Module
         /// </summary>
         protected virtual void LateUpdateModule()
         {
+            UpdateAnimator();
+        }
+        /// <summary>
+        /// Update animator
+        /// </summary>
+        protected virtual void UpdateAnimator()
+        {
             
         }
         #endregion

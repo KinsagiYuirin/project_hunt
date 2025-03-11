@@ -1,6 +1,8 @@
+using System.Collections;
 using TriInspector;
 using UnityEngine;
 using MadDuck.Scripts.Character.Module;
+using UnityEngine.Serialization;
 
 namespace MadDuck.Scripts.Character.Module
 {
@@ -11,29 +13,24 @@ namespace MadDuck.Scripts.Character.Module
     {
         [Title("References")]
         [SerializeField] private Rigidbody2D rb2d;
+        public Rigidbody2D Rb2d => rb2d;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Animator walkAnimator;
     
         [Title("Movement Settings")]
-        [SerializeField] private float movementSpeed = 4f;
-
-        private Vector2 moveDirection;
-
-        private bool isFlipped = new();
+        [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
+        [SerializeField, ReadOnly] protected Vector2 moveDirection;
         
-        private void FlipServerRpc(bool flipX)
-        {
-            isFlipped = flipX;
-        }
-    
+        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        
         /// <summary>
         /// Flips the sprite based on the direction of movement.
         /// </summary>
-        private void Flip()
+        protected virtual void Flip()
         {
             if (moveDirection.x != 0)
             { 
                 var shouldFlip = moveDirection.x < 0;
-                FlipServerRpc(shouldFlip);
                 spriteRenderer.flipX = shouldFlip;
             }
         }
@@ -41,10 +38,24 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateModule()
         {
             base.UpdateModule();
-            rb2d.linearVelocity = moveDirection * movementSpeed;
-            
+            rb2d.linearVelocity = moveDirection * MovementSpeed;
             Flip();
         }
+        
+        protected void LateUpdate()
+        {
+            LateUpdateModule();
+        }
+
+        protected override void LateUpdateModule()
+        {
+            if (moveDirection.magnitude <= 0)
+            {
+                rb2d.linearVelocity = Vector2.zero;
+            }
+            base.LateUpdateModule();
+        }
+        
         /// <summary>
         /// Sets the direction of movement.
         /// </summary>
@@ -64,6 +75,13 @@ namespace MadDuck.Scripts.Character.Module
             if (characterHub.CharacterType is not CharacterType.Player) return;
             base.HandleInput();
             SetDirection(PlayerInput.MovementInput);
+        }
+        
+        protected override void UpdateAnimator()
+        {
+            base.UpdateAnimator();
+            if (walkAnimator != null)
+                walkAnimator.SetBool(IsMoving, moveDirection.magnitude > 0);
         }
     }
 }

@@ -27,6 +27,9 @@ public class PlayerInput : MonoBehaviour
     
     [SerializeField, ReadOnly] private InputButton dodgeButton;
     public InputButton DodgeButton => dodgeButton;
+    
+    [SerializeField, ReadOnly] private InputButton blockButton;
+    public InputButton BlockButton => blockButton;
 
     #region Subscriptions
 
@@ -89,7 +92,7 @@ public class PlayerInput : MonoBehaviour
     
     private void HandleBlock(InputAction.CallbackContext context)
     {
-        BindButton(attackButton, context);
+        BindButton(blockButton, context);
     }
 
     private void BindButton(InputButton button, InputAction.CallbackContext context)

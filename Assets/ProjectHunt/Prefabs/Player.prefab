@@ -187,6 +187,10 @@ MonoBehaviour:
     isDown: 0
     isUp: 0
     isHeld: 0
+  blockButton:
+    isDown: 0
+    isUp: 0
+    isHeld: 0
 --- !u!114 &7879806830289603691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,8 +620,9 @@ MonoBehaviour:
   dodgeAnimator: {fileID: 0}
   healthModule: {fileID: 8230736877032119612}
   movementModule: {fileID: 142617026950676422}
-  dodgeSpeed: 100
+  dodgeSpeed: 30
   dodgeCooldown: 5
   dodgeDuration: 1
   dodgeReady: 0
-  dodgeTimer: 0
+  dodgeDirection: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}

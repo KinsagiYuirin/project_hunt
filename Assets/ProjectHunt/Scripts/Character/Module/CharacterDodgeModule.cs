@@ -9,7 +9,6 @@ namespace MadDuck.Scripts.Character.Module
 {
     public class CharacterDodgeModule : CharacterModule
     {
-        [FormerlySerializedAs("rb2d")]
         [Title("Dodge References")]
         [SerializeField] private Rigidbody2D dRb2d;
         [SerializeField] private Animator dodgeAnimator;
@@ -25,6 +24,7 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField, DisplayAsString] private bool dodgeReady;
         private Coroutine dodgeCoroutine;
         [SerializeField, DisplayAsString] private Vector2 dodgeDirection;
+        [SerializeField, DisplayAsString] private Vector2 moveDirection;
         
         private static readonly int IsDodge = Animator.StringToHash("IsMoving");
 
@@ -32,13 +32,14 @@ namespace MadDuck.Scripts.Character.Module
         {
             dodgeDirection = Vector2.zero;
             dodgeReady = true;
-            dRb2d = movementModule.Rb2d;
         }
 
         protected override void UpdateModule()
         {
             if (!ModulePermitted) return;
             base.UpdateModule();
+            dRb2d = movementModule.Rb2d;
+            moveDirection = movementModule.MoveDirection;
         }
         
         public void GetDodge()
@@ -70,12 +71,14 @@ namespace MadDuck.Scripts.Character.Module
             healthModule.iFrame = true;
             Debug.Log("iFrame is true");
 
-            dodgeDirection = new Vector2(transform.localScale.x, 0).normalized; 
+            dodgeDirection = moveDirection.x != 0 
+                ? new Vector2(moveDirection.x, 0).normalized 
+                : new Vector2(transform.localScale.x, 0).normalized;
     
             float elapsedTime = 0;
             while (elapsedTime < dodgeDuration)
             {
-                transform.position += (Vector3)(dodgeDirection * dodgeSpeed * Time.deltaTime);
+                dRb2d.transform.position += (Vector3)(dodgeDirection * dodgeSpeed * Time.deltaTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }

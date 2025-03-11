@@ -20,7 +20,8 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Movement Settings")]
         [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
         [SerializeField, ReadOnly] protected Vector2 moveDirection;
-        public Vector2 MoveDirection => moveDirection;
+        
+        public Vector2 lastMoveDirection { get; private set; } = Vector2.right;
         
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         
@@ -30,7 +31,9 @@ namespace MadDuck.Scripts.Character.Module
         protected virtual void Flip()
         {
             if (moveDirection.x != 0)
-            { 
+            {
+                lastMoveDirection = moveDirection.normalized;
+                
                 var shouldFlip = moveDirection.x < 0;
                 spriteRenderer.flipX = shouldFlip;
             }

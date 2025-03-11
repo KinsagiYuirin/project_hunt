@@ -616,6 +616,8 @@ MonoBehaviour:
   blockedMovementStates: 
   blockedActionStates: 
   blockedConditionStates: 
+  pCollider2D: {fileID: 3843638490162342145}
+  eCollider2D: {fileID: -1498871494436429462, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
   dRb2d: {fileID: 0}
   dodgeAnimator: {fileID: 0}
   healthModule: {fileID: 8230736877032119612}

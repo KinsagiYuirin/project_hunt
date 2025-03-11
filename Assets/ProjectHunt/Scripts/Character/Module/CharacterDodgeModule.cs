@@ -21,15 +21,19 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private float dodgeDuration = 0.5f;
         
         [Title("Dodge Debug")]
+        [SerializeField, DisplayAsString] private int playerLayer;
+        [SerializeField, DisplayAsString] private int enemyLayer;
         [SerializeField, DisplayAsString] private bool dodgeReady;
         private Coroutine dodgeCoroutine;
         [SerializeField, DisplayAsString] private Vector2 dodgeDirection;
-        [SerializeField, DisplayAsString] private Vector2 moveDirection;
         
         private static readonly int IsDodge = Animator.StringToHash("IsMoving");
 
         private void Start()
         {
+            playerLayer = LayerMask.NameToLayer("Player");
+            enemyLayer = LayerMask.NameToLayer("Enemy");
+            
             dodgeDirection = Vector2.zero;
             dodgeReady = true;
         }
@@ -39,7 +43,6 @@ namespace MadDuck.Scripts.Character.Module
             if (!ModulePermitted) return;
             base.UpdateModule();
             dRb2d = movementModule.Rb2d;
-            moveDirection = movementModule.MoveDirection;
         }
         
         public void GetDodge()
@@ -66,15 +69,14 @@ namespace MadDuck.Scripts.Character.Module
         protected IEnumerator DodgeCoroutine()
         {
             dodgeReady = false;
-            //characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
+            characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
             
             healthModule.iFrame = true;
             Debug.Log("iFrame is true");
+            
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
 
-            dodgeDirection = moveDirection.x != 0 
-                ? new Vector2(moveDirection.x, 0).normalized 
-                : new Vector2(transform.localScale.x, 0).normalized;
-    
+            dodgeDirection = movementModule.lastMoveDirection; 
             float elapsedTime = 0;
             while (elapsedTime < dodgeDuration)
             {
@@ -83,8 +85,10 @@ namespace MadDuck.Scripts.Character.Module
                 yield return null;
             }
 
-            Debug.Log("iFrame is false");
             healthModule.iFrame = false;
+            Debug.Log("iFrame is false");
+            
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             
             yield return new WaitForSeconds(dodgeCooldown);
             

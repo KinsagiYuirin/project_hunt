@@ -601,7 +601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467976713449586737, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4709753013246871129, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: dodgeSpeed
@@ -744,6 +744,18 @@ PrefabInstance:
     - target: {fileID: 1874056769481055930, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402927883215621036, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402927883215621036, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402927883215621036, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6644012803235925120, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: useMMHealthBar

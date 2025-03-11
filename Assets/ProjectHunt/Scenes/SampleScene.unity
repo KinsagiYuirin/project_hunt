@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!50 &264324917 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2587335678156580482, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+  m_PrefabInstance: {fileID: 5375253325708748439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +261,16 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!61 &393071045 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3843638490162342145, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+  m_PrefabInstance: {fileID: 4812499181112730269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &393071046 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6338695292097733196, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+  m_PrefabInstance: {fileID: 4812499181112730269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +606,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4133082888721904812, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4388087078345494197, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -745,6 +764,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2798780925666258176, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: knockBackRb
+      value: 
+      objectReference: {fileID: 393071046}
+    - target: {fileID: 3327413121690208128, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 264324917}
+    - target: {fileID: 3327413121690208128, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: targetRb
+      value: 
+      objectReference: {fileID: 393071046}
+    - target: {fileID: 3327413121690208128, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: knockbackForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327413121690208128, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: targetCollider
+      value: 
+      objectReference: {fileID: 393071045}
+    - target: {fileID: 3327413121690208128, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: targetKnockBackRb
+      value: 
+      objectReference: {fileID: 393071046}
     - target: {fileID: 5402927883215621036, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -756,6 +799,14 @@ PrefabInstance:
     - target: {fileID: 5402927883215621036, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469750480871455620, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183645629955555742, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.37
       objectReference: {fileID: 0}
     - target: {fileID: 6644012803235925120, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: useMMHealthBar

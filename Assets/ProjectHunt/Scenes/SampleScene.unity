@@ -634,6 +634,18 @@ PrefabInstance:
       propertyPath: <MovementSpeed>k__BackingField
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4924366744760391260, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 393071046}
+    - target: {fileID: 4924366744760391260, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: knockbackForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924366744760391260, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: knockbackDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5449507196073429967, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.46685696
@@ -726,7 +738,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1874056769481055930, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.67
+      value: -4.76
       objectReference: {fileID: 0}
     - target: {fileID: 1874056769481055930, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalPosition.y

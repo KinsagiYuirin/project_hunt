@@ -291,7 +291,8 @@ MonoBehaviour:
     m_Bits: 128
   knockbackForce: 40
   knockbackDuration: 3
-  rb: {fileID: 6338695292097733196}
+  playerRb: {fileID: 6338695292097733196}
+  canMove: 1
 --- !u!61 &4133082888721904812
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -698,6 +699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821b7e224835d424cae192b295f17133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementModule: {fileID: 142617026950676422}
+  isUsingController: 0
 --- !u!1 &8842016164651774562
 GameObject:
   m_ObjectHideFlags: 0

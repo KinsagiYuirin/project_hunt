@@ -130,7 +130,6 @@ namespace MadDuck.Scripts.Character.Module
             if (!attackReady) return;
             if (attackCoroutine != null) return;
             attackCoroutine = StartCoroutine(AttackCoroutine());
-            
         }
 
         /// <summary>

@@ -1,16 +1,36 @@
+using MadDuck.Scripts.Utils;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class GuardArea : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] protected LayerMask targetLayer;
+
+    protected Collider2D damageCollider;
+    public delegate void OnHit(Collider2D collider);
+    public event OnHit OnHitEvent;
+
+    protected virtual void Start()
     {
-        
+        damageCollider = GetComponent<Collider2D>();
+        damageCollider.isTrigger = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void OnDisable()
     {
-        
+        OnHitEvent = null;
+    }
+
+    public virtual void SetActive(bool active)
+    {
+        if (!damageCollider) damageCollider = GetComponent<Collider2D>();
+        damageCollider.enabled = active;
+    }
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (LayerMaskUtils.IsInLayerMask(other.gameObject.layer, targetLayer))
+        {
+            OnHitEvent?.Invoke(other);
+        }
     }
 }

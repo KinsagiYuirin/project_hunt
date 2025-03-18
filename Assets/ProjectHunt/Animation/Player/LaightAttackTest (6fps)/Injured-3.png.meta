@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9abe8c8fda254124bb1728209d6c52de
+guid: 432a2644781bc18438a73a8dcf0ed5b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 270138247091584535
-    second: light_01_0
+      213: -7290381052616558114
+    second: Injured-3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light_01_0
+      name: Injured-3_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 6
-        width: 498
-        height: 501
+        x: 183
+        y: 125
+        width: 220
+        height: 222
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71ef322fd49bfb300800000000000000
-      internalID: 270138247091584535
+      spriteID: ed93d890f0d53da90800000000000000
+      internalID: -7290381052616558114
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      light_01_0: 270138247091584535
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

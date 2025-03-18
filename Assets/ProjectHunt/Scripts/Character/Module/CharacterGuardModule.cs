@@ -27,6 +27,13 @@ namespace MadDuck.Scripts.Character.Module
             AlwaysExpanded = false)]
         [SerializeField] private List<GuardPattern> guardPatterns;
         
+        [Title("Animator")]
+        [SerializeField] protected Animator guardAnimator;
+        private static readonly int IsDrawnSheild = Animator.StringToHash("IsDrawn");
+        private static readonly int IsGuard = Animator.StringToHash("IsGuard");
+        [SerializeField, DisplayAsString] protected bool IsDrawn;
+        [SerializeField, DisplayAsString] protected bool IsGuarding;
+        
         [Title("Debug")]
         [SerializeField, DisplayAsString] private int currentPatternIndex;
         [SerializeField, DisplayAsString] private int previousPatternIndex = -1;
@@ -45,7 +52,13 @@ namespace MadDuck.Scripts.Character.Module
         }
 
         private Coroutine guardCoroutine;
-        
+
+        private void Start()
+        {
+            IsDrawn = false;
+            IsGuarding = false;
+        }
+
         public override void Initialize(CharacterHub characterHub)
         {
             base.Initialize(characterHub);
@@ -126,15 +139,46 @@ namespace MadDuck.Scripts.Character.Module
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
             characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
+            StepAnimation(0);
             yield return new WaitForSeconds(CurrentPattern.Value.delay);
+            StepAnimation(1);
             CurrentPattern.Value.guardArea.SetActive(true);
+            StepAnimation(2);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
+            StepAnimation(3);
             CurrentPattern.Value.guardArea.SetActive(false);
             characterHub.ChangeActionState(CharacterStates.CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % guardPatterns.Count;
             guardReady = false;
             guardCoroutine = null;
+        }
+        
+        private void StepAnimation(int step)
+        {
+            switch (step)
+            {
+                case 0:
+                    IsDrawn = true;
+                    break;
+                case 1:
+                    IsDrawn = false;
+                    break;
+                case 2:
+                    IsGuarding = true;
+                    break;
+                case 3:
+                    IsGuarding = false;
+                    break;
+            }
+        }
+        
+        protected override void UpdateAnimator()
+        {
+            base.UpdateAnimator();
+            if (guardAnimator == null) {return;}
+            guardAnimator.SetBool(IsDrawnSheild, IsDrawn);
+            guardAnimator.SetBool(IsGuard, IsGuarding);
         }
     }
     

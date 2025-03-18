@@ -143,7 +143,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 4b96f559e5029314883058fcc39d7e6a, type: 2}
   movementInput: {x: 0, y: 0}
-  attackButton:
+  lightAttackButton:
+    isDown: 0
+    isUp: 0
+    isHeld: 0
+  heavyAttackButton:
     isDown: 0
     isUp: 0
     isHeld: 0
@@ -208,8 +212,9 @@ MonoBehaviour:
   - guardArea: {fileID: 7299832752923529816}
     delay: 0
     duration: 2
-    interval: 0
-    resetComboTime: 0
+    interval: 0.1
+    resetComboTime: 0.1
+  attackAnimator: {fileID: 0}
   currentPatternIndex: 0
   previousPatternIndex: -1
   guardReady: 0
@@ -322,8 +327,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2033684598367576425}
   - component: {fileID: 8418843850496470553}
+  - component: {fileID: 5605587053082892761}
   m_Layer: 6
-  m_Name: BasicAttack
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,19 +367,210 @@ MonoBehaviour:
   blockedMovementStates: 
   blockedActionStates: 
   blockedConditionStates: 
-  basicAttackPatterns:
+  attackPatterns:
   - damageArea: {fileID: 6053063398037685732}
-    damage: 10
-    delay: 2
-    duration: 0.1
-    interval: 1
-    resetComboTime: 1
+    damage: 20
+    delay: 0
+    duration: 0
+    interval: 0.1
+    resetComboTime: 0.1
   attackAnimator: {fileID: 0}
+  IsSwordDrawn: 0
+  IsAttacking: 0
   currentPatternIndex: 0
   previousPatternIndex: -1
   attackReady: 0
   currentInterval: 0
   currentComboTime: 0
+--- !u!114 &5605587053082892761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421201316146727412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa59dc083467d64586a6ea973db3629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleEnabled: 1
+  blockedMovementStates: 
+  blockedActionStates: 
+  blockedConditionStates: 
+  attackPatterns:
+  - damageArea: {fileID: 2881599205680141672}
+    damage: 50
+    delay: 2
+    duration: 0
+    interval: 0.1
+    resetComboTime: 0.1
+  attackAnimator: {fileID: 3060655119649613860}
+  IsSwordDrawn: 0
+  IsAttacking: 0
+  currentPatternIndex: 0
+  previousPatternIndex: -1
+  attackReady: 0
+  currentInterval: 0
+  currentComboTime: 0
+--- !u!1 &2574916258185798978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818562718295490794}
+  - component: {fileID: 7457908572576299692}
+  - component: {fileID: 2881599205680141672}
+  m_Layer: 6
+  m_Name: Combo1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818562718295490794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574916258185798978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2735897330259023841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7457908572576299692
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574916258185798978}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.5221643, y: 0.16605449}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.6051912, y: 2.291533}
+  m_EdgeRadius: 0
+--- !u!114 &2881599205680141672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574916258185798978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041e8103402e0c24fa00db12fabc435c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!1 &3104809039469596153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4957677098737052184}
+  m_Layer: 6
+  m_Name: LightAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4957677098737052184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3104809039469596153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3396756838832641261}
+  m_Father: {fileID: 9123790683406301333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3225564652948279569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2735897330259023841}
+  m_Layer: 6
+  m_Name: HeavyAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2735897330259023841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225564652948279569}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 818562718295490794}
+  m_Father: {fileID: 9123790683406301333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4034680408191520965
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,12 +885,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8039790074493195838}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9123790683406301333}
+  m_Father: {fileID: 4957677098737052184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6425586664948695373
 BoxCollider2D:
@@ -729,7 +926,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.7332916, y: -0.010136366}
+  m_Offset: {x: 2.0930758, y: -0.010136366}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -739,7 +936,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.4665833, y: 4.1016803}
+  m_Size: {x: 3.7470148, y: 4.1016803}
   m_EdgeRadius: 0
 --- !u!114 &6053063398037685732
 MonoBehaviour:
@@ -897,7 +1094,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3396756838832641261}
+  - {fileID: 4957677098737052184}
+  - {fileID: 2735897330259023841}
   m_Father: {fileID: 2033684598367576425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2643533735892436441

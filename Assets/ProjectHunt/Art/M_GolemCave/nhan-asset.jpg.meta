@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nhan-asset_0: 3478832517939566815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

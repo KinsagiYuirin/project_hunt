@@ -22,8 +22,11 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField, ReadOnly] private Vector2 movementInput;
     public Vector2 MovementInput => movementInput;
-    [SerializeField, ReadOnly] private InputButton attackButton;
-    public InputButton AttackButton => attackButton;
+    [SerializeField, ReadOnly] private InputButton lightAttackButton;
+    public InputButton LightAttackButton => lightAttackButton;
+    
+    [SerializeField, ReadOnly] private InputButton heavyAttackButton;
+    public InputButton HeavyAttackButton => heavyAttackButton;
     
     [SerializeField, ReadOnly] private InputButton dodgeButton;
     public InputButton DodgeButton => dodgeButton;
@@ -77,12 +80,12 @@ public class PlayerInput : MonoBehaviour
     }
     private void HandleLightAttack(InputAction.CallbackContext context)
     {
-        BindButton(attackButton, context);
+        BindButton(lightAttackButton, context);
     }
     
     private void HandleHeavyAttack(InputAction.CallbackContext context)
     {
-        BindButton(attackButton, context);
+        BindButton(heavyAttackButton, context);
     }
     
     private void HandleDodge(InputAction.CallbackContext context)

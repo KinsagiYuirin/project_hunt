@@ -34,6 +34,8 @@ namespace MadDuck.Scripts.Character.Module
             playerLayer = LayerMask.NameToLayer("Player");
             enemyLayer = LayerMask.NameToLayer("Enemy");
             
+            
+            
             dodgeDirection = Vector2.zero;
             dodgeReady = true;
         }
@@ -52,7 +54,6 @@ namespace MadDuck.Scripts.Character.Module
             if (dodgeCoroutine != null) return;
             
             dodgeCoroutine = StartCoroutine(DodgeCoroutine());
-            characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Dodge);
         }
         
         protected override void HandleInput()
@@ -69,8 +70,8 @@ namespace MadDuck.Scripts.Character.Module
         protected IEnumerator DodgeCoroutine()
         {
             dodgeReady = false;
-            characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
-            
+            characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Dodge);
+
             healthModule.iFrame = true;
             Debug.Log("iFrame is true");
             
@@ -84,15 +85,22 @@ namespace MadDuck.Scripts.Character.Module
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-
             healthModule.iFrame = false;
             Debug.Log("iFrame is false");
             
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             
-            yield return new WaitForSeconds(dodgeCooldown);
+            if (movementModule.MoveDirection.magnitude != 0f)
+            {
+                characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Walking);
+            }
+            else
+            {
+                characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Idle);
+            }
             
-            //characterHub.ChangeActionState(CharacterStates.CharacterActionState.None);
+            yield return new WaitForSeconds(dodgeCooldown);
+
             dodgeReady = true;
             dodgeCoroutine = null;
         }
@@ -101,9 +109,9 @@ namespace MadDuck.Scripts.Character.Module
         {
             base.UpdateAnimator();
             if (dodgeAnimator == null) {return;}
-            if (PlayerInput.DodgeButton.isDown && healthModule.iFrame == true)
+            if (PlayerInput.DodgeButton.isDown && healthModule.iFrame)
             {
-                dodgeAnimator.SetTrigger(IsDash.ToString("IsDash"));
+                dodgeAnimator.SetTrigger(IsDash.ToString("IsDash") );
             }
         }
     }

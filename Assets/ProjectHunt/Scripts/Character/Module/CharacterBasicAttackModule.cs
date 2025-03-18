@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TriInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MadDuck.Scripts.Character.Module
 {
     [Serializable]
-    public struct BasicAttackPattern
+    public struct AttackPattern
     {
         [Group("Area"), Required] public DamageArea damageArea;
         [Group("Damage"), Min(0)] public float damage;
@@ -26,30 +27,39 @@ namespace MadDuck.Scripts.Character.Module
             HideAddButton = false,
             HideRemoveButton = false,
             AlwaysExpanded = false)]
-        [SerializeField] private List<BasicAttackPattern> basicAttackPatterns;
+        [SerializeField] protected List<AttackPattern> attackPatterns;
         
         [Title("Animator")]
-        [SerializeField] private Animator attackAnimator;
-        private static readonly int IsAttack = Animator.StringToHash("IsAttack");
+        [SerializeField] protected Animator attackAnimator;
+        private static readonly int IsDrawnLightSword = Animator.StringToHash("IsDrawnLightSword");
+        private static readonly int IsLightAttack = Animator.StringToHash("IsLightAttack");
+        [SerializeField, DisplayAsString] protected bool IsSwordDrawn;
+        [SerializeField, DisplayAsString] protected bool IsAttacking;
         
         [Title("Debug")]
-        [SerializeField, DisplayAsString] private int currentPatternIndex;
-        [SerializeField, DisplayAsString] private int previousPatternIndex = -1;
-        [SerializeField, DisplayAsString] private bool attackReady;
-        [SerializeField, DisplayAsString] private float currentInterval;
-        [SerializeField, DisplayAsString] private float currentComboTime;
+        [SerializeField, DisplayAsString] protected int currentPatternIndex;
+        [SerializeField, DisplayAsString] protected int previousPatternIndex = -1;
+        [SerializeField, DisplayAsString] protected bool attackReady;
+        [SerializeField, DisplayAsString] protected float currentInterval;
+        [SerializeField, DisplayAsString] protected float currentComboTime;
         
-        private BasicAttackPattern? CurrentPattern => basicAttackPatterns[currentPatternIndex];
-        private BasicAttackPattern? PreviousPattern
+        protected AttackPattern? CurrentPattern => attackPatterns[currentPatternIndex];
+        protected AttackPattern? PreviousPattern
         {
             get
             {
                 if (previousPatternIndex == -1) return null;
-                return basicAttackPatterns[previousPatternIndex];
+                return attackPatterns[previousPatternIndex];
             }
         }
 
-        private Coroutine attackCoroutine;
+        protected void Start()
+        {
+            IsSwordDrawn = false;
+            IsAttacking = false;
+        }
+
+        protected Coroutine attackCoroutine;
 
         public override void Initialize(CharacterHub characterHub)
         {
@@ -57,7 +67,7 @@ namespace MadDuck.Scripts.Character.Module
             currentPatternIndex = 0;
             currentInterval = 0;
             previousPatternIndex = -1;
-            basicAttackPatterns.ForEach(pattern =>
+            attackPatterns.ForEach(pattern =>
             {
                 pattern.damageArea.SetActive(false);
                 pattern.damageArea.OnHitEvent += OnHit;
@@ -70,7 +80,7 @@ namespace MadDuck.Scripts.Character.Module
             currentPatternIndex = 0;
             currentInterval = 0;
             previousPatternIndex = -1;
-            basicAttackPatterns.ForEach(pattern =>
+            attackPatterns.ForEach(pattern =>
             {
                 pattern.damageArea.SetActive(false);
                 pattern.damageArea.OnHitEvent -= OnHit;
@@ -93,7 +103,7 @@ namespace MadDuck.Scripts.Character.Module
         {
             if (characterHub.CharacterType is not CharacterType.Player) return;
             base.HandleInput();
-            if (PlayerInput.AttackButton.isDown)
+            if (PlayerInput.LightAttackButton.isDown)
             {
                 Attack();
             }
@@ -145,22 +155,46 @@ namespace MadDuck.Scripts.Character.Module
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
             characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
+            StepAnimation(0);
             yield return new WaitForSeconds(CurrentPattern.Value.delay);
+            StepAnimation(1);
             CurrentPattern.Value.damageArea.SetActive(true);
+            StepAnimation(2);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
+            StepAnimation(3);
             CurrentPattern.Value.damageArea.SetActive(false);
             characterHub.ChangeActionState(CharacterStates.CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
-            currentPatternIndex = (currentPatternIndex + 1) % basicAttackPatterns.Count;
+            currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;
             attackReady = false;
             attackCoroutine = null;
+        }
+
+        protected virtual void StepAnimation(int step)
+        {
+            switch (step)
+            {
+                case 0:
+                    IsSwordDrawn = true;
+                    break;
+                case 1:
+                    IsSwordDrawn = false;
+                    break;
+                case 2:
+                    IsAttacking = true;
+                    break;
+                case 3:
+                    IsAttacking = false;
+                    break;
+            }
         }
         
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-            if (attackAnimator != null)
-                attackAnimator.SetBool(IsAttack, CurrentPattern.Value.damageArea.isActiveAndEnabled);
+            if (attackAnimator == null) {return;}
+            attackAnimator.SetBool(IsDrawnLightSword, IsSwordDrawn);    
+            attackAnimator.SetBool(IsLightAttack, IsAttacking);
         }
     }
 }

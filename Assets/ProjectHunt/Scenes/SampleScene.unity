@@ -606,6 +606,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4100921361484025527, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: m_Size.y
+      value: 2.7618184
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100921361484025527, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.65979457
+      objectReference: {fileID: 0}
     - target: {fileID: 4133082888721904812, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -685,6 +693,14 @@ PrefabInstance:
     - target: {fileID: 5449507196073429967, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792718869394317206, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: guardPatterns.Array.data[0].interval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792718869394317206, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: guardPatterns.Array.data[0].resetComboTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6143908926398813189, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Layer

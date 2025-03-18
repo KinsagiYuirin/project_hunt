@@ -19,7 +19,7 @@ namespace MadDuck.Scripts.Character.Module
     
     public class CharacterGuardModule : CharacterModule
     {
-        [FormerlySerializedAs("basicAttackPatterns")]
+        [FormerlySerializedAs("basicGuardPatterns")]
         [Title("Settings")]
         [TableList(Draggable = true,
             HideAddButton = false,
@@ -30,7 +30,7 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Debug")]
         [SerializeField, DisplayAsString] private int currentPatternIndex;
         [SerializeField, DisplayAsString] private int previousPatternIndex = -1;
-        [SerializeField, DisplayAsString] private bool attackReady;
+        [SerializeField, DisplayAsString] private bool guardReady;
         [SerializeField, DisplayAsString] private float currentInterval;
         [SerializeField, DisplayAsString] private float currentComboTime;
         
@@ -44,11 +44,37 @@ namespace MadDuck.Scripts.Character.Module
             }
         }
 
-        private Coroutine attackCoroutine;
+        private Coroutine guardCoroutine;
         
-        private void SetGuard()
+        public override void Initialize(CharacterHub characterHub)
         {
-            
+            base.Initialize(characterHub);
+            currentPatternIndex = 0;
+            currentInterval = 0;
+            previousPatternIndex = -1;
+            guardPatterns.ForEach(pattern =>
+            {
+                pattern.guardArea.SetActive(false);
+                pattern.guardArea.OnHitEvent += OnHit;
+            });
+        }
+
+        public override void Shutdown()
+        {
+            base.Shutdown();
+            currentPatternIndex = 0;
+            currentInterval = 0;
+            previousPatternIndex = -1;
+            guardPatterns.ForEach(pattern =>
+            {
+                pattern.guardArea.SetActive(false);
+                pattern.guardArea.OnHitEvent -= OnHit;
+            });
+        }
+        
+        protected virtual void OnHit(Collider2D collider)
+        {
+            Debug.Log(collider.gameObject.name);
         }
         
         protected override void HandleInput()
@@ -61,7 +87,41 @@ namespace MadDuck.Scripts.Character.Module
             }
         }
         
-        protected IEnumerator AttackCoroutine()
+        protected override void UpdateModule()
+        {
+            if (!ModulePermitted) return;
+            base.UpdateModule();
+            if (PreviousPattern != null)
+            {
+                if (guardReady && currentComboTime < PreviousPattern.Value.resetComboTime)
+                {
+                    currentComboTime += Time.deltaTime;
+                }
+                if (currentComboTime >= PreviousPattern.Value.resetComboTime)
+                {
+                    currentComboTime = 0;
+                    currentPatternIndex = 0;
+                    previousPatternIndex = -1;
+                }
+                if (!guardReady && currentInterval < PreviousPattern.Value.interval)
+                {
+                    currentInterval += Time.deltaTime;
+                    return;
+                }
+            }
+            guardReady = true;
+            currentInterval = 0;
+        }
+        
+        public virtual void SetGuard()
+        {
+            if (!ModulePermitted) return;
+            if (!guardReady) return;
+            if (guardCoroutine != null) return;
+            guardCoroutine = StartCoroutine(GuardCoroutine());
+        }
+        
+        protected IEnumerator GuardCoroutine()
         {
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
@@ -73,8 +133,8 @@ namespace MadDuck.Scripts.Character.Module
             characterHub.ChangeActionState(CharacterStates.CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % guardPatterns.Count;
-            attackReady = false;
-            attackCoroutine = null;
+            guardReady = false;
+            guardCoroutine = null;
         }
     }
     

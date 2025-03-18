@@ -51,7 +51,7 @@ namespace MadDuck.Scripts.Character.Module
         private void OnHealthDataChanged(HealthData previousvalue, HealthData newvalue)
         {
             _previousChange = newvalue.currentHealth - previousvalue.currentHealth;
-            UpdateHealthBar();
+            //UpdateHealthBar();
         }
 
         public virtual void ChangeHealth(float amount)
@@ -66,9 +66,11 @@ namespace MadDuck.Scripts.Character.Module
             {
                 Die();
             }
-            UpdateHealthBar();
+            //UpdateHealthBar();
         }
 
+        
+        /*
         public virtual void UpdateHealthBar()
         {
             if (characterHub.CharacterType is CharacterType.Player) return;
@@ -89,7 +91,7 @@ namespace MadDuck.Scripts.Character.Module
                         progressTracker.LerpForegroundBar = shouldBump;
                         progressTracker.LerpDecreasingDelayedBar = shouldBump;
                         progressTracker.LerpIncreasingDelayedBar = shouldBump;
-                        */
+                        #1#
                         
                         healthBar.UpdateBar(currentHealth, 0, maxHealth, true);
                         break;
@@ -107,6 +109,7 @@ namespace MadDuck.Scripts.Character.Module
                 
             }
         }
+        */
         
         protected virtual void Die()
         {

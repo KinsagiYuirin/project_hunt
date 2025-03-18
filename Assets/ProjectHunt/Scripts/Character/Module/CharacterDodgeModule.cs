@@ -100,8 +100,11 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-            if (dodgeAnimator != null)
-                dodgeAnimator.SetBool(IsDash, healthModule.iFrame);
+            if (dodgeAnimator == null) {return;}
+            if (PlayerInput.DodgeButton.isDown && healthModule.iFrame == true)
+            {
+                dodgeAnimator.SetTrigger(IsDash.ToString("IsDash"));
+            }
         }
     }
 }

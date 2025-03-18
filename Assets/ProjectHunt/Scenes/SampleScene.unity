@@ -591,6 +591,10 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 142617026950676422, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: <MovementSpeed>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 637062009675074137, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Name
       value: Player
@@ -720,9 +724,17 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6755875235299008950, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: dodgeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755875235299008950, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: dodgeAnimator
       value: 
       objectReference: {fileID: 4812499181112730270}
+    - target: {fileID: 6755875235299008950, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: dodgeCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7984379519223223713, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -730,6 +742,10 @@ PrefabInstance:
     - target: {fileID: 8039790074493195838, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230736877032119612, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: healthData.maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8418843850496470553, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: basicAttackPatterns.Array.data[0].delay

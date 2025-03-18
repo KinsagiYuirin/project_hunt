@@ -698,6 +698,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6755875235299008950, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+      propertyPath: dodgeAnimator
+      value: 
+      objectReference: {fileID: 4812499181112730270}
     - target: {fileID: 7984379519223223713, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -728,6 +732,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+--- !u!95 &4812499181112730270 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3060655119649613860, guid: 46a43d2a885b27443bfde2b87edf9b14, type: 3}
+  m_PrefabInstance: {fileID: 4812499181112730269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5375253325708748439
 PrefabInstance:
   m_ObjectHideFlags: 0

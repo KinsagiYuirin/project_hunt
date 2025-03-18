@@ -85,7 +85,7 @@ namespace MadDuck.Scripts.Character.Module
         {
             base.UpdateAnimator();
             if (walkAnimator != null)
-                walkAnimator.SetBool(IsMoving, moveDirection.magnitude > 0);
+                walkAnimator.SetBool(IsMoving, moveDirection.magnitude != 0);
         }
     }
 }

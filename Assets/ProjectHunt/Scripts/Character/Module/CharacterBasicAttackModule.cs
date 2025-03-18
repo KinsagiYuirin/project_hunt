@@ -28,6 +28,10 @@ namespace MadDuck.Scripts.Character.Module
             AlwaysExpanded = false)]
         [SerializeField] private List<BasicAttackPattern> basicAttackPatterns;
         
+        [Title("Animator")]
+        [SerializeField] private Animator attackAnimator;
+        private static readonly int IsAttack = Animator.StringToHash("IsAttack");
+        
         [Title("Debug")]
         [SerializeField, DisplayAsString] private int currentPatternIndex;
         [SerializeField, DisplayAsString] private int previousPatternIndex = -1;
@@ -150,6 +154,13 @@ namespace MadDuck.Scripts.Character.Module
             currentPatternIndex = (currentPatternIndex + 1) % basicAttackPatterns.Count;
             attackReady = false;
             attackCoroutine = null;
+        }
+        
+        protected override void UpdateAnimator()
+        {
+            base.UpdateAnimator();
+            if (attackAnimator != null)
+                attackAnimator.SetBool(IsAttack, CurrentPattern.Value.damageArea.isActiveAndEnabled);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace MadDuck.Scripts.Character.Module
         private Coroutine dodgeCoroutine;
         [SerializeField, DisplayAsString] private Vector2 dodgeDirection;
         
-        private static readonly int IsDodge = Animator.StringToHash("IsMoving");
+        private static readonly int IsDodge = Animator.StringToHash("IsDodge");
 
         private void Start()
         {
@@ -101,7 +101,7 @@ namespace MadDuck.Scripts.Character.Module
         {
             base.UpdateAnimator();
             if (dodgeAnimator != null)
-                dodgeAnimator.SetBool(IsDodge, PlayerInput.DodgeButton.isDown);
+                dodgeAnimator.SetBool(IsDodge, healthModule.iFrame);
         }
     }
 }

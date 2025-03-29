@@ -45,6 +45,7 @@ namespace MadDuck.Scripts.Character.Module
 
         private void Start()
         {
+            healthData.currentHealth = startingHealth;
             iFrame = false;
         }
 

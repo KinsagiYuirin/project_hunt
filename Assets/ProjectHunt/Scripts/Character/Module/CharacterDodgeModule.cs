@@ -19,6 +19,7 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private float dodgeSpeed = 100f;
         [SerializeField] private float dodgeCooldown = 5f;
         [SerializeField] private float dodgeDuration = 0.5f;
+        [SerializeField] private int dodgeTimes = 1;
         
         [Title("Dodge Debug")]
         [SerializeField, DisplayAsString] private int playerLayer;
@@ -59,6 +60,7 @@ namespace MadDuck.Scripts.Character.Module
         protected override void HandleInput()
         {
             if (characterHub.CharacterType is not CharacterType.Player) return;
+            if (dodgeTimes <= 0) return;
             base.HandleInput();
             if (PlayerInput.DodgeButton.isDown) { GetDodge(); }
         }
@@ -71,7 +73,8 @@ namespace MadDuck.Scripts.Character.Module
         {
             dodgeReady = false;
             characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Dodge);
-
+            dodgeTimes --;
+            
             healthModule.iFrame = true;
             Debug.Log("iFrame is true");
             
@@ -103,6 +106,7 @@ namespace MadDuck.Scripts.Character.Module
 
             dodgeReady = true;
             dodgeCoroutine = null;
+            dodgeTimes++;
         }
 
         protected override void UpdateAnimator()

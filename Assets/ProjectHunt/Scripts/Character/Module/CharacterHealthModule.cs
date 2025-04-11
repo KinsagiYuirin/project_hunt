@@ -115,7 +115,7 @@ namespace MadDuck.Scripts.Character.Module
         protected virtual void Die()
         {
             if (!ModulePermitted) return;
-            characterHub.ChangeConditionState(CharacterStates.CharacterConditionState.Dead);
+            characterHub.ChangeConditionState(CharacterConditionState.Dead);
         }
     }
 }

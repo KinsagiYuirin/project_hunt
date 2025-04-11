@@ -154,7 +154,7 @@ namespace MadDuck.Scripts.Character.Module
         {
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
-            characterHub.ChangeActionState(CharacterStates.CharacterActionState.Basic);
+            characterHub.ChangeActionState(CharacterActionState.Basic);
             StepAnimation(0);
             yield return new WaitForSeconds(CurrentPattern.Value.delay);
             StepAnimation(1);
@@ -163,7 +163,7 @@ namespace MadDuck.Scripts.Character.Module
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
             StepAnimation(3);
             CurrentPattern.Value.damageArea.SetActive(false);
-            characterHub.ChangeActionState(CharacterStates.CharacterActionState.None);
+            characterHub.ChangeActionState(CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;
             attackReady = false;

@@ -72,7 +72,7 @@ namespace MadDuck.Scripts.Character.Module
         protected IEnumerator DodgeCoroutine()
         {
             dodgeReady = false;
-            characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Dodge);
+            characterHub.ChangeMovementState(CharacterMovementState.Dodge);
             dodgeTimes --;
             
             healthModule.iFrame = true;
@@ -95,11 +95,11 @@ namespace MadDuck.Scripts.Character.Module
             
             if (movementModule.MoveDirection.magnitude != 0f)
             {
-                characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Walking);
+                characterHub.ChangeMovementState(CharacterMovementState.Walking);
             }
             else
             {
-                characterHub.ChangeMovementState(CharacterStates.CharacterMovementState.Idle);
+                characterHub.ChangeMovementState(CharacterMovementState.Idle);
             }
             
             yield return new WaitForSeconds(dodgeCooldown);

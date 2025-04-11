@@ -65,14 +65,22 @@ namespace MadDuck.Scripts.Character.Module
         /// Sets the direction of movement.
         /// </summary>
         /// <param name="direction">Direction of movement.</param>
-        public void SetDirection(Vector2 direction)
+        public void SetDirection(Vector2 direction, bool forceSet = false)
         {
+            if (!ModulePermitted && !forceSet) return;
             moveDirection = direction;
             moveDirection.Normalize();
+            if (characterHub.MovementState == CharacterMovementState.Dodge) return;
             var state = moveDirection.magnitude > 0
-                ? CharacterStates.CharacterMovementState.Walking
-                : CharacterStates.CharacterMovementState.Idle;
+                ? CharacterMovementState.Walking
+                : CharacterMovementState.Idle;
             characterHub.ChangeMovementState(state);
+        }
+        
+        public void SetPosition(Vector2 position)
+        {
+            if (!ModulePermitted) return;
+            rb2d.position = position;
         }
         
         protected override void HandleInput()

@@ -5,79 +5,79 @@ using MadDuck.Scripts.Character;
 
 namespace MadDuck.Scripts.Character
 {
-    public abstract class CharacterStates
+    public enum CharacterMovementState
     {
-        public enum CharacterMovementState
-        {
-            Idle,
-            Walking,
-            Dodge
-        }
+        Idle,
+        Walking,
+        Dodge
+    }
 
-        public struct MovementStateEvent
-        {
-            public CharacterHub characterHub;
-            public CharacterMovementState previousState;
-            public CharacterMovementState newState;
+    public struct MovementStateEvent
+    {
+        public CharacterHub characterHub;
+        public CharacterMovementState previousState;
+        public CharacterMovementState newState;
 
-            private static MovementStateEvent _eventData;
-            
-            public static void Invoke(CharacterHub characterHub, CharacterMovementState previousState, CharacterMovementState newState)
-            {
-                _eventData.characterHub = characterHub;
-                _eventData.previousState = previousState;
-                _eventData.newState = newState;
-                _eventData.Invoke();
-            }
-        }
-    
-        public enum CharacterActionState
+        private static MovementStateEvent _eventData;
+
+        public static void Invoke(CharacterHub characterHub, CharacterMovementState previousState,
+            CharacterMovementState newState)
         {
-            None,
-            Basic,
-            Skill,
-            Ultimate
+            _eventData.characterHub = characterHub;
+            _eventData.previousState = previousState;
+            _eventData.newState = newState;
+            EventBus<MovementStateEvent>.Invoke(_eventData);
         }
-        
-        public struct ActionStateEvent
+    }
+
+    public enum CharacterActionState
+    {
+        None,
+        Basic,
+        Skill,
+        Ultimate
+    }
+
+    public struct ActionStateEvent
+    {
+        public CharacterHub characterHub;
+        public CharacterActionState previousState;
+        public CharacterActionState newState;
+
+        private static ActionStateEvent _eventData;
+
+        public static void Invoke(CharacterHub characterHub, CharacterActionState previousState,
+            CharacterActionState newState)
         {
-            public CharacterHub characterHub;
-            public CharacterActionState previousState;
-            public CharacterActionState newState;
-            
-            private static ActionStateEvent _eventData;
-            
-            public static void Invoke(CharacterHub characterHub, CharacterActionState previousState, CharacterActionState newState)
-            {
-                _eventData.characterHub = characterHub;
-                _eventData.previousState = previousState;
-                _eventData.newState = newState;
-                _eventData.Invoke();
-            }
+            _eventData.characterHub = characterHub;
+            _eventData.previousState = previousState;
+            _eventData.newState = newState;
+            EventBus<ActionStateEvent>.Invoke(_eventData);
         }
-        
-        public enum CharacterConditionState
+    }
+
+    public enum CharacterConditionState
+    {
+        Normal,
+        Stunned,
+        Dead
+    }
+
+    public struct ConditionStateEvent
+    {
+        public CharacterHub characterHub;
+        public CharacterConditionState previousState;
+        public CharacterConditionState newState;
+
+        private static ConditionStateEvent _eventData;
+
+        public static void Invoke(CharacterHub characterHub, CharacterConditionState previousState,
+            CharacterConditionState newState)
         {
-            Normal,
-            Dead
-        }
-        
-        public struct ConditionStateEvent
-        {
-            public CharacterHub characterHub;
-            public CharacterConditionState previousState;
-            public CharacterConditionState newState;
-            
-            private static ConditionStateEvent _eventData;
-            
-            public static void Invoke(CharacterHub characterHub, CharacterConditionState previousState, CharacterConditionState newState)
-            {
-                _eventData.characterHub = characterHub;
-                _eventData.previousState = previousState;
-                _eventData.newState = newState;
-                _eventData.Invoke();
-            }
+            _eventData.characterHub = characterHub;
+            _eventData.previousState = previousState;
+            _eventData.newState = newState;
+            EventBus<ConditionStateEvent>.Invoke(_eventData);
         }
     }
 }
-

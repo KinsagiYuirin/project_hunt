@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MadDuck.Scripts.BehaviourGraphs.CustomActions;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,16 +11,12 @@ namespace MadDuck.Scripts.Character.Module.AI
     {
         [Title("AI Settings")]
         [SerializeField] private CharacterMovementModule characterMovement;
-        [SerializeField] private CharacterAIDetectionModule characterAIDetection;
         [SerializeField] private Transform target;
         
-        [Title("Status")]
-        [SerializeField] private float runSpeed;
-         
         [Title("Set Range")]
         [SerializeField] private float atkRange;
         [SerializeField] private float outLimitRange;
-        
+
         [Title("Set Timer")]
         [SerializeField] private float atkRangeTimer;
         
@@ -33,26 +30,21 @@ namespace MadDuck.Scripts.Character.Module.AI
         {
             base.UpdateModule();
             aiToTargetDistance = Vector2.Distance(transform.position, target.position);
-            
+                
             OutOfAttackRange();
         }
         
-        protected void LateUpdate()
-        {
-            LateUpdateModule();
-        }
-
         private void OutOfAttackRange()
         {
-            
+                
             if (aiToTargetDistance > outLimitRange)
                 MoveConditions(true, false);
-            
+                
             if (aiToTargetDistance > atkRange)
             {
                 outAtkRangeTimer += Time.deltaTime;
                 if (outAtkRangeTimer < atkRangeTimer) return;
-                
+                    
                 MoveConditions(true, false);
             }
             else
@@ -74,7 +66,7 @@ namespace MadDuck.Scripts.Character.Module.AI
                 characterMovement.SetDirection(Vector2.zero);
             }
         }
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;

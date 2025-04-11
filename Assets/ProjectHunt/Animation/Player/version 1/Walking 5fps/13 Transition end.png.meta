@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 0ce9833663dcf9340a35469fb52440a7
+guid: cee97f0c81ebd6044b3716e6de2e6ea4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -953843068483459975
-    second: dash_6fps-1_0
+      213: 1775832391755254516
+    second: 13 Transition end_0
+  - first:
+      213: -8946194564980527873
+    second: 13 Transition end_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash_6fps-1_0
+      name: 13 Transition end_0
       rect:
         serializedVersion: 2
-        x: 240
-        y: 124
-        width: 192
-        height: 242
+        x: 159
+        y: 58
+        width: 360
+        height: 379
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 974239b68c443c2f0800000000000000
-      internalID: -953843068483459975
+      spriteID: 4fa443bc62605a810800000000000000
+      internalID: 1775832391755254516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 13 Transition end_1
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 69
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc2ece217bb8d380800000000000000
+      internalID: -8946194564980527873
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Idle-1_0: 720765414803502515
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

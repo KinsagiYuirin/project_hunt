@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0ce9833663dcf9340a35469fb52440a7
+guid: 15e497816afe42e41936847e03d895bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -953843068483459975
-    second: dash_6fps-1_0
+      213: 6848705895128958850
+    second: 8 Walking_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash_6fps-1_0
+      name: 8 Walking_0
       rect:
         serializedVersion: 2
-        x: 240
-        y: 124
-        width: 192
-        height: 242
+        x: 98
+        y: 58
+        width: 369
+        height: 348
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 974239b68c443c2f0800000000000000
-      internalID: -953843068483459975
+      spriteID: 2870942c9bd7b0f50800000000000000
+      internalID: 6848705895128958850
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Idle-1_0: 720765414803502515
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

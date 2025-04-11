@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 0ce9833663dcf9340a35469fb52440a7
+guid: b3416bdd7a7fa3440b69bb02ba0b46cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -953843068483459975
-    second: dash_6fps-1_0
+      213: -6110427729194016812
+    second: 9 Walking_0
+  - first:
+      213: -8186325768298336473
+    second: 9 Walking_1
+  - first:
+      213: -6657931469605004247
+    second: 9 Walking_2
+  - first:
+      213: -8129839715087571676
+    second: 9 Walking_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash_6fps-1_0
+      name: 9 Walking_0
       rect:
         serializedVersion: 2
-        x: 240
-        y: 124
-        width: 192
-        height: 242
+        x: 148
+        y: 56
+        width: 362
+        height: 354
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 974239b68c443c2f0800000000000000
-      internalID: -953843068483459975
+      spriteID: 4df91bfca56633ba0800000000000000
+      internalID: -6110427729194016812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9 Walking_1
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 161
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72f63f43614546e80800000000000000
+      internalID: -8186325768298336473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9 Walking_2
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 72
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c9c478a964a93a0800000000000000
+      internalID: -6657931469605004247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9 Walking_3
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 53
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 425a7555ad10d2f80800000000000000
+      internalID: -8129839715087571676
       vertices: []
       indices: 
       edges: []
@@ -134,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Idle-1_0: 720765414803502515
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

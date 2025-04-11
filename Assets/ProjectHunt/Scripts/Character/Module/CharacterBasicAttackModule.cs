@@ -42,8 +42,8 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField, DisplayAsString] protected bool attackReady;
         [SerializeField, DisplayAsString] protected float currentInterval;
         [SerializeField, DisplayAsString] protected float currentComboTime;
-        
-        protected AttackPattern? CurrentPattern => attackPatterns[currentPatternIndex];
+
+        public AttackPattern? CurrentPattern => attackPatterns[currentPatternIndex];
         protected AttackPattern? PreviousPattern
         {
             get

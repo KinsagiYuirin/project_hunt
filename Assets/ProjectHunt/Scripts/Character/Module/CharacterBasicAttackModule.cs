@@ -23,6 +23,7 @@ namespace MadDuck.Scripts.Character.Module
     public class CharacterBasicAttackModule : CharacterModule
     {
         [Title("Settings")]
+        [SerializeField] private Transform comboParent;
         [TableList(Draggable = true,
             HideAddButton = false,
             HideRemoveButton = false,
@@ -146,6 +147,14 @@ namespace MadDuck.Scripts.Character.Module
             attackCoroutine = StartCoroutine(AttackCoroutine());
         }
 
+        public virtual void SetAttackDirection(Vector2 direction)
+        {
+            if (!ModulePermitted) return;
+            direction.Normalize();
+            comboParent.right = direction;
+        }
+
+        
         /// <summary>
         /// Coroutine that handles the timing of the attack.
         /// </summary>

@@ -9,11 +9,14 @@ namespace MadDuck.Scripts.Character.Module
 {
     public class CharacterHeavyAttackModule : CharacterBasicAttackModule
     {
+        [Title("Heavy Attack Settings")]
         private static readonly int IsDrawnHeavyAttack = Animator.StringToHash("IsDrawnHeavyAttack");
         private static readonly int IsHeavyAttack = Animator.StringToHash("IsHeavyAttack");
 
         private bool IsHeavySwordDrawn;
         private bool IsHeavyAttacking;
+        
+        [SerializeField] private CharacterMovementModule movementModule;
         
         protected override void HandleInput()
         {

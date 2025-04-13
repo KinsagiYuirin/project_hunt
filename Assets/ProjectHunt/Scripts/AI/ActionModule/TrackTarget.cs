@@ -11,7 +11,7 @@ namespace MadDuck.Scripts.AI.ActionModule
         [Title("AI Settings")] [SerializeField]
         private CharacterMovementModule characterMovement;
 
-        [SerializeField] private Transform target;
+        [SerializeField] public Transform target;
 
         [Title("Set Range")] [SerializeField] private float atkRange;
         [SerializeField] private float outLimitRange;
@@ -20,7 +20,7 @@ namespace MadDuck.Scripts.AI.ActionModule
 
         [Title("Debug")] [SerializeField, DisplayAsString]
         private float outRangeTimer;
-
+        
         [SerializeField, DisplayAsString] private float outAtkRangeTimer;
         [SerializeField, DisplayAsString] public bool InRangeAttack;
         [SerializeField, DisplayAsString] public float aiToTargetDistance;
@@ -37,7 +37,7 @@ namespace MadDuck.Scripts.AI.ActionModule
         {
 
             if (aiToTargetDistance > outLimitRange)
-                MoveConditions(true, false);
+                MoveConditions(false, true);
 
             if (aiToTargetDistance > atkRange)
             {
@@ -60,7 +60,12 @@ namespace MadDuck.Scripts.AI.ActionModule
             {
                 characterMovement.SetDirection(target.position - transform.position);
             }
-            else
+            else if (!isWalking && isRun)
+            {
+                characterMovement.isRunning = true;
+                characterMovement.SetDirection(target.position - transform.position);
+            }
+            else if (!isWalking && !isRun)
             {
                 characterMovement.SetDirection(Vector2.zero);
             }

@@ -19,8 +19,11 @@ namespace MadDuck.Scripts.Character.Module
     
         [Title("Movement Settings")]
         [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
+        [field: SerializeField] public float RunningSpeed { get; private set; } = 2f;
         [SerializeField, ReadOnly] protected Vector2 moveDirection;
         public Vector2 MoveDirection => moveDirection;
+        
+        public bool isRunning = false;
         
         public Vector2 lastMoveDirection { get; private set; } = Vector2.right;
         
@@ -43,7 +46,16 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateModule()
         {
             base.UpdateModule();
-            rb2d.linearVelocity = moveDirection * MovementSpeed;
+
+            switch (isRunning)
+            {
+                case true:
+                    rb2d.linearVelocity = moveDirection * MovementSpeed * RunningSpeed;
+                    break;
+                case false: 
+                    rb2d.linearVelocity = moveDirection * MovementSpeed;
+                    break;
+            }
             Flip();
         }
         

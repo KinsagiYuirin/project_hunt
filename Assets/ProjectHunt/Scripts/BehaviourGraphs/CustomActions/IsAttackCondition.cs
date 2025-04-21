@@ -10,8 +10,12 @@ public partial class IsAttackCondition : Condition
     [SerializeReference] public BlackboardVariable<TrackTarget> Attack;
 
     public override bool IsTrue()
-    { 
-        return Attack.Value.InRangeAttack;
+    {
+        if (Attack.Value.InRangeAttack)
+        {
+            return true;
+        }
+        return false;
     }
 
     public override void OnStart()

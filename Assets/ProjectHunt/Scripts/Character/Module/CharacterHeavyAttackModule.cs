@@ -28,6 +28,12 @@ namespace MadDuck.Scripts.Character.Module
                 Attack();
             }
         }
+        
+        protected override IEnumerator AttackCoroutine()
+        {
+            yield return base.AttackCoroutine();
+            movementModule.isRunning = false;
+        }
 
         protected override void StepAnimation(int step)
         {

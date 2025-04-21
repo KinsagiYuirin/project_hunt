@@ -15,6 +15,7 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private Rigidbody2D rb2d;
         public Rigidbody2D Rb2d => rb2d;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        public SpriteRenderer SpriteRenderer => spriteRenderer;
         [SerializeField] private Animator walkAnimator;
     
         [Title("Movement Settings")]
@@ -32,7 +33,7 @@ namespace MadDuck.Scripts.Character.Module
         /// <summary>
         /// Flips the sprite based on the direction of movement.
         /// </summary>
-        protected virtual void Flip()
+        public virtual void Flip()
         {
             if (moveDirection.x != 0)
             {

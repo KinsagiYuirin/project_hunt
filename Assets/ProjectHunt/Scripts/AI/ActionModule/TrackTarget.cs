@@ -1,3 +1,5 @@
+using System;
+using MadDuck.Scripts.Character;
 using MadDuck.Scripts.Character.Module;
 using TriInspector;
 using UnityEngine;
@@ -13,6 +15,9 @@ namespace MadDuck.Scripts.AI.ActionModule
 
         [SerializeField] public Transform target;
 
+        [SerializeField] private CharacterBasicAttackModule isBasicAttack;
+        [SerializeField] private CharacterHeavyAttackModule isHeavyAttack;
+        
         [Title("Set Range")] [SerializeField] private float atkRange;
         [SerializeField] private float outLimitRange;
 
@@ -21,9 +26,15 @@ namespace MadDuck.Scripts.AI.ActionModule
         [Title("Debug")] [SerializeField, DisplayAsString]
         private float outRangeTimer;
         
+        
         [SerializeField, DisplayAsString] private float outAtkRangeTimer;
         [SerializeField, DisplayAsString] public bool InRangeAttack;
         [SerializeField, DisplayAsString] public float aiToTargetDistance;
+
+        private void Start()
+        {
+            gameObject.GetComponent<CircleCollider2D>().radius = atkRange;
+        }
 
         protected override void UpdateModule()
         {
@@ -43,7 +54,7 @@ namespace MadDuck.Scripts.AI.ActionModule
             {
                 outAtkRangeTimer += Time.deltaTime;
                 if (outAtkRangeTimer < atkRangeTimer) return;
-
+                
                 MoveConditions(true, false);
             }
             else
@@ -52,6 +63,19 @@ namespace MadDuck.Scripts.AI.ActionModule
                 InRangeAttack = true;
                 outAtkRangeTimer = 0;
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                InRangeAttack = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            InRangeAttack = false;
         }
 
         private void MoveConditions(bool isWalking, bool isRun)
@@ -68,6 +92,21 @@ namespace MadDuck.Scripts.AI.ActionModule
             else if (!isWalking && !isRun)
             {
                 characterMovement.SetDirection(Vector2.zero);
+                
+                if (characterHub.ActionState != CharacterActionState.Basic) 
+                    Flip();
+            }
+        }
+        
+        private void Flip()
+        {
+            if (target.position.x > transform.position.x)
+            {
+                characterMovement.SpriteRenderer.flipX = false; // หันขวา
+            }
+            else
+            {
+                characterMovement.SpriteRenderer.flipX = true; // หันซ้าย
             }
         }
 

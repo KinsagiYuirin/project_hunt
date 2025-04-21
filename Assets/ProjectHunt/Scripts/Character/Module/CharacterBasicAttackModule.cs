@@ -125,7 +125,7 @@ namespace MadDuck.Scripts.Character.Module
                     currentComboTime = 0;
                     currentPatternIndex = 0;
                     previousPatternIndex = -1;
-                }
+                } 
                 if (!attackReady && currentInterval < PreviousPattern.Value.interval)
                 {
                     currentInterval += Time.deltaTime;
@@ -159,7 +159,7 @@ namespace MadDuck.Scripts.Character.Module
         /// Coroutine that handles the timing of the attack.
         /// </summary>
         /// <returns></returns>
-        protected IEnumerator AttackCoroutine()
+        protected virtual IEnumerator AttackCoroutine()
         {
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;

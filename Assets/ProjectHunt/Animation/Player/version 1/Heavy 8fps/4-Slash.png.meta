@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slash-4_0
+      name: 4-Slash_0
       rect:
         serializedVersion: 2
-        x: 182
-        y: 21
-        width: 509
-        height: 385
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2dbaf6107bf2afd30800000000000000
-      internalID: 4465934443540884434
+      spriteID: 9683e9cf54a49aa4ebac38d2f81fe2b8
+      internalID: -1843051623
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9c1c0410e4141bc4882f909a25696c38
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Slash-4_0: 4465934443540884434
+      4-Slash_0: -1843051623
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

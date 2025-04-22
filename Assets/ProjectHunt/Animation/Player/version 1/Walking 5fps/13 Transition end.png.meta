@@ -106,42 +106,20 @@ TextureImporter:
       name: 13 Transition end_0
       rect:
         serializedVersion: 2
-        x: 159
-        y: 58
-        width: 360
-        height: 379
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4fa443bc62605a810800000000000000
-      internalID: 1775832391755254516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 13 Transition end_1
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 69
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ffc2ece217bb8d380800000000000000
-      internalID: -8946194564980527873
+      spriteID: 3df0ca1689592794d8bcf3851d4ea133
+      internalID: -544202041
       vertices: []
       indices: 
       edges: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 88142ac69aac9994a9fcac3c6e589a30
     internalID: 0
     vertices: []
     indices: 
@@ -159,7 +137,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      13 Transition end_0: -544202041
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

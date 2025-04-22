@@ -109,64 +109,20 @@ TextureImporter:
       name: 12 Transition end_0
       rect:
         serializedVersion: 2
-        x: 62
-        y: 56
-        width: 469
-        height: 357
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3cddab4f9292dc390800000000000000
-      internalID: -7796530119732175421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 12 Transition end_1
-      rect:
-        serializedVersion: 2
-        x: 648
-        y: 180
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e5567926ad88a8a0800000000000000
-      internalID: -6293624734450559516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 12 Transition end_2
-      rect:
-        serializedVersion: 2
-        x: 692
-        y: 83
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a21f9f3255a53a0a0800000000000000
-      internalID: -6871549284714942166
+      spriteID: 575aebbb1a1994547b5d1d88dc877bb0
+      internalID: 170597558
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dda49acd90bd382438002e9f7cba9594
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +140,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      12 Transition end_0: 170597558
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -103,45 +103,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stance-3_0
+      name: 3-Stance_0
       rect:
         serializedVersion: 2
-        x: 326
-        y: 396
-        width: 8
-        height: 7
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 195db6d6993a79c90800000000000000
-      internalID: -7163076802948377199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Stance-3_1
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 52
-        width: 416
-        height: 329
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4565f3f6a61db2850800000000000000
-      internalID: 6353401954399376980
+      spriteID: 19004f5e46451dc40a0d300130aef8bb
+      internalID: 95108866
       vertices: []
       indices: 
       edges: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6c784d4f26887ed4bb8a11cabd2899fa
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +138,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stance-3_0: -7163076802948377199
-      Stance-3_1: 6353401954399376980
+      3-Stance_0: 95108866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

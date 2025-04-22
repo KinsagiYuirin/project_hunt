@@ -103,45 +103,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hold-7_0
+      name: 7-Hold_0
       rect:
         serializedVersion: 2
-        x: 143
-        y: 51
-        width: 469
-        height: 442
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee9fb174ef530c970800000000000000
-      internalID: 8773071440348707310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hold-7_1
-      rect:
-        serializedVersion: 2
-        x: 626
-        y: 76
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e85147070904bdc0800000000000000
-      internalID: -3624261874335262492
+      spriteID: 76aabce986f350e47b823cc6f5963096
+      internalID: 1192980191
       vertices: []
       indices: 
       edges: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f9ffe9fd26a1b84418a33a9501f47094
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +138,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hold-7_0: 8773071440348707310
-      Hold-7_1: -3624261874335262492
+      7-Hold_0: 1192980191
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

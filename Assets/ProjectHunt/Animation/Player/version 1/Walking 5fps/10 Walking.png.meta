@@ -109,64 +109,20 @@ TextureImporter:
       name: 10 Walking_0
       rect:
         serializedVersion: 2
-        x: 94
-        y: 62
-        width: 429
-        height: 354
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 054582a584f663ef0800000000000000
-      internalID: -128793182792559536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 10 Walking_1
-      rect:
-        serializedVersion: 2
-        x: 367
-        y: 60
-        width: 38
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e968579187b178270800000000000000
-      internalID: 8252595044816881310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 10 Walking_2
-      rect:
-        serializedVersion: 2
-        x: 602
-        y: 73
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9770af148a216aa60800000000000000
-      internalID: 7684850328025040761
+      spriteID: 073f0878427c75e46893b2e27fd8b23c
+      internalID: -1255704083
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c49314f2760b9394bba9b7ab8464f089
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +140,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      10 Walking_0: -1255704083
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

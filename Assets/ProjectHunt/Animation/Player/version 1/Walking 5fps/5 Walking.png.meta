@@ -106,42 +106,20 @@ TextureImporter:
       name: 5 Walking_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 56
-        width: 403
-        height: 352
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee2c1358ddca86d40800000000000000
-      internalID: 5577898205920740078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 5 Walking_1
-      rect:
-        serializedVersion: 2
-        x: 648
-        y: 180
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1eeeb68a0da57d030800000000000000
-      internalID: 3519381486038675169
+      spriteID: 3e4c16a1d8060304f97bae04291b683f
+      internalID: 899771883
       vertices: []
       indices: 
       edges: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b5ca7d9ab5e48e644bac3d30192440a1
     internalID: 0
     vertices: []
     indices: 
@@ -159,7 +137,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      5 Walking_0: 899771883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

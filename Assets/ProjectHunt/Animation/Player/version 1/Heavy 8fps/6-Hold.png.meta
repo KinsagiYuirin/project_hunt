@@ -112,111 +112,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hold-6_0
+      name: 6-Hold_0
       rect:
         serializedVersion: 2
-        x: 162
-        y: 51
-        width: 330
-        height: 452
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2620833d10394df60800000000000000
-      internalID: 8058227269320573538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hold-6_1
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 298
-        width: 170
-        height: 147
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80c729a2b037b65f0800000000000000
-      internalID: -762389220113089528
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hold-6_2
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 280
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 317ce3208009df2f0800000000000000
-      internalID: -937434783351388397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hold-6_3
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 234
-        width: 15
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7a09477b01fdaa00800000000000000
-      internalID: 769536142898432636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hold-6_4
-      rect:
-        serializedVersion: 2
-        x: 626
-        y: 76
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c42902fd0bb20b5d0800000000000000
-      internalID: -3048888909072133556
+      spriteID: 2f6c5b6531de3f7419531fb1516dfb09
+      internalID: 2145580689
       vertices: []
       indices: 
       edges: []
@@ -225,7 +137,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 520c9aad696f51b46808fe449a20f911
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +147,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hold-6_0: 8058227269320573538
-      Hold-6_1: -762389220113089528
-      Hold-6_2: -937434783351388397
-      Hold-6_3: 769536142898432636
-      Hold-6_4: -3048888909072133556
+      6-Hold_0: 2145580689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

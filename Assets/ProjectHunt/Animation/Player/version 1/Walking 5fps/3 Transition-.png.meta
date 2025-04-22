@@ -109,64 +109,20 @@ TextureImporter:
       name: 3 Transition-_0
       rect:
         serializedVersion: 2
-        x: 159
-        y: 58
-        width: 360
-        height: 379
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: caf4ab8ba0e68b4d0800000000000000
-      internalID: -3118621749626122324
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3 Transition-_1
-      rect:
-        serializedVersion: 2
-        x: 462
-        y: 156
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1b6fe3889568252e0800000000000000
-      internalID: -2138499153951525199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 3 Transition-_2
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 69
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f05efc17e6679fa0800000000000000
-      internalID: -5794049252778946313
+      spriteID: ffa12bf54856a7044a014c0f36aaecb8
+      internalID: 1873674240
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4913d6d1ebad8c945a7b8382307f29bc
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +140,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      3 Transition-_0: 1873674240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -109,64 +109,20 @@ TextureImporter:
       name: 1 idle_0
       rect:
         serializedVersion: 2
-        x: 155
-        y: 41
-        width: 358
-        height: 413
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd1bcba2d96019650800000000000000
-      internalID: 6237774230981489115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1 idle_1
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 155
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 750cdf04196684950800000000000000
-      internalID: 6433504841745416279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1 idle_2
-      rect:
-        serializedVersion: 2
-        x: 630
-        y: 68
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41371ce1a2bc776d0800000000000000
-      internalID: -2992700045599345900
+      spriteID: 3d491e2f01b2cd24893ab326f6af7bd7
+      internalID: 1660152168
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ccb0a542c0ceaee4b8b20b0cc1ad447f
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +140,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      1 idle_0: 1660152168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

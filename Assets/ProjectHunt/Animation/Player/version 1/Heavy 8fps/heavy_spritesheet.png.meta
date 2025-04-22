@@ -142,10 +142,10 @@ TextureImporter:
       name: heavy_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 162
-        y: 51
-        width: 330
-        height: 452
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: heavy_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 458
-        y: 298
-        width: 170
-        height: 147
+        x: 700
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,10 +186,10 @@ TextureImporter:
       name: heavy_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 1026
-        y: 396
-        width: 8
-        height: 7
+        x: 1400
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,10 +208,10 @@ TextureImporter:
       name: heavy_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 1555
-        y: 41
-        width: 358
-        height: 413
+        x: 2100
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: heavy_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 2203
-        y: 53
-        width: 351
-        height: 401
+        x: 2800
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,10 +252,10 @@ TextureImporter:
       name: heavy_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 2943
-        y: 51
-        width: 469
-        height: 442
+        x: 3500
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,10 +274,10 @@ TextureImporter:
       name: heavy_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 3673
-        y: 50
-        width: 447
-        height: 458
+        x: 4200
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,165 +292,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 4382
-        y: 21
-        width: 509
-        height: 385
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f68eb2327f4b1a950800000000000000
-      internalID: 6458642314166003823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 280
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9b328cddd8aad6a0800000000000000
-      internalID: -6423636247649829985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 775
-        y: 52
-        width: 416
-        height: 329
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a7495a17777a3680800000000000000
-      internalID: -8774569570551117914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 234
-        width: 15
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c5f6fd2c0d080ce0800000000000000
-      internalID: -1438885734982945338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 1879
-        y: 155
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a0f6ec7afcf4bbc30800000000000000
-      internalID: 4376179216212717322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 626
-        y: 76
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4948abbacf183300800000000000000
-      internalID: 231970336401803597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_spritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 3426
-        y: 76
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 03be1d9a07efce5e0800000000000000
-      internalID: -1878847184681440464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a452d27c3a49279439e41d7c031498ef
     internalID: 0
     vertices: []
     indices: 
@@ -462,18 +308,11 @@ TextureImporter:
     nameFileIdTable:
       heavy_spritesheet_0: 468858235055028965
       heavy_spritesheet_1: 4677425169723216832
-      heavy_spritesheet_10: -1438885734982945338
-      heavy_spritesheet_11: 4376179216212717322
-      heavy_spritesheet_12: 231970336401803597
-      heavy_spritesheet_13: -1878847184681440464
       heavy_spritesheet_2: -8617257692490606519
       heavy_spritesheet_3: 1205921210740608710
       heavy_spritesheet_4: 7605921100285958600
       heavy_spritesheet_5: 4346464317460861336
       heavy_spritesheet_6: -6356084189733740710
-      heavy_spritesheet_7: 6458642314166003823
-      heavy_spritesheet_8: -6423636247649829985
-      heavy_spritesheet_9: -8774569570551117914
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

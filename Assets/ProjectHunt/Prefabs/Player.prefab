@@ -214,7 +214,9 @@ MonoBehaviour:
     duration: 2
     interval: 0.1
     resetComboTime: 0.1
-  attackAnimator: {fileID: 0}
+  guardAnimator: {fileID: 0}
+  IsDrawn: 0
+  IsGuarding: 0
   currentPatternIndex: 0
   previousPatternIndex: -1
   guardReady: 0
@@ -229,8 +231,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3805866661087933177}
-  - component: {fileID: 4924366744760391260}
-  - component: {fileID: 4133082888721904812}
   m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
@@ -253,70 +253,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2213208666196322251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4924366744760391260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279182213743884826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11144738982f6b4c89e9b9ac081034b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  knockbackForce: 40
-  knockbackDuration: 3
-  rb: {fileID: 6338695292097733196}
---- !u!61 &4133082888721904812
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279182213743884826}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.37, y: 4.2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 3.37, y: 4.2}
-  m_EdgeRadius: 0
 --- !u!1 &2421201316146727412
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +303,7 @@ MonoBehaviour:
   blockedMovementStates: 
   blockedActionStates: 
   blockedConditionStates: 
+  comboParent: {fileID: 0}
   attackPatterns:
   - damageArea: {fileID: 6053063398037685732}
     damage: 20
@@ -398,6 +335,7 @@ MonoBehaviour:
   blockedMovementStates: 
   blockedActionStates: 
   blockedConditionStates: 
+  comboParent: {fileID: 0}
   attackPatterns:
   - damageArea: {fileID: 2881599205680141672}
     damage: 50
@@ -413,6 +351,7 @@ MonoBehaviour:
   attackReady: 0
   currentInterval: 0
   currentComboTime: 0
+  movementModule: {fileID: 0}
 --- !u!1 &2574916258185798978
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +797,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5560752111340501917}
   walkAnimator: {fileID: 3060655119649613860}
   <MovementSpeed>k__BackingField: 20
+  <RunningSpeed>k__BackingField: 2
   moveDirection: {x: 0, y: 0}
+  isRunning: 0
 --- !u!1 &8039790074493195838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1120,7 @@ MonoBehaviour:
   dodgeSpeed: 30
   dodgeCooldown: 5
   dodgeDuration: 1
+  dodgeTimes: 1
   playerLayer: 0
   enemyLayer: 0
   dodgeReady: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TriInspector;
 using UnityEngine;
 using MadDuck.Scripts.Character.Module;

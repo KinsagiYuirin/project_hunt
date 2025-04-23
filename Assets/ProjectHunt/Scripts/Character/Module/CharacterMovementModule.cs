@@ -22,25 +22,34 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Movement Settings")]
         [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
         [field: SerializeField] public float RunningSpeed { get; private set; } = 2f;
+        
+        [Title("Movement Debug")]
         [SerializeField, ReadOnly] protected Vector2 moveDirection;
         public Vector2 MoveDirection => moveDirection;
         
         public bool isRunning = false;
-        
+        public bool isBackStepping = false;
         public Vector2 lastMoveDirection { get; private set; } = Vector2.right;
         
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int IsBackStep = Animator.StringToHash("IsBackStep");
         
         /// <summary>
         /// Flips the sprite based on the direction of movement.
         /// </summary>
         public virtual void Flip()
         {
+            bool shouldFlip = false;
+            
             if (moveDirection.x != 0)
             {
                 lastMoveDirection = moveDirection.normalized;
-                
-                var shouldFlip = moveDirection.x < 0;
+
+                if (!isBackStepping)
+                    shouldFlip = moveDirection.x < 0;
+                else
+                    shouldFlip = moveDirection.x > 0;
+
                 spriteRenderer.flipX = shouldFlip;
             }
         }
@@ -107,8 +116,17 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-            if (walkAnimator != null)
-                walkAnimator.SetBool(IsMoving, moveDirection.magnitude != 0);
+
+            if (!isBackStepping)
+            {
+                if (walkAnimator != null)
+                    walkAnimator.SetBool(IsMoving, moveDirection.magnitude != 0);
+            }
+            else
+            {
+                if (walkAnimator != null)
+                    walkAnimator.SetBool(IsBackStep, moveDirection.magnitude != 0);
+            }
         }
     }
 }

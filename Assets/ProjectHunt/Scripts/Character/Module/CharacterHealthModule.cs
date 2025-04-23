@@ -31,6 +31,8 @@ namespace MadDuck.Scripts.Character.Module
         private bool useMMHealthBar = true;
         private YuirinHealthBar healthBar;
         
+        [SerializeField] private Animator deadAnimator;
+        
         /*
         [SerializeField, ShowIf(nameof(useMMHealthBar))] 
         private MMHealthBar healthBar;
@@ -116,6 +118,20 @@ namespace MadDuck.Scripts.Character.Module
         {
             if (!ModulePermitted) return;
             characterHub.ChangeConditionState(CharacterConditionState.Dead);
+        }
+
+        protected override void UpdateAnimator()
+        {
+            base.UpdateAnimator();
+            if (deadAnimator == null) return;
+            if (characterHub.ConditionState == CharacterConditionState.Dead)
+            {
+                deadAnimator.SetBool("IsDead", true);
+            }
+            else
+            {
+                deadAnimator.SetBool("IsDead", false);
+            }
         }
     }
 }

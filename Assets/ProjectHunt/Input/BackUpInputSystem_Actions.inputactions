@@ -1,5 +1,5 @@
 {
-    "name": "InputSystem_Actions",
+    "name": "BackUpInputSystem_Actions",
     "maps": [
         {
             "name": "Player",
@@ -36,6 +36,15 @@
                     "name": "Dodge",
                     "type": "Button",
                     "id": "02650a6f-9606-4e5e-87e5-a40ecfa10e11",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "1a6f208f-45ea-4fcf-bb00-4d2cdff5389c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -172,6 +181,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24d92b3f-ed6a-4c23-b3c4-7f3acee090ad",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1655fadb-bb91-454b-9971-2b0554c4e646",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

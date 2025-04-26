@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProjectHunt/Scenes/GameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/ProjectHunt/Scenes/EndCredit.unity
+    guid: 8b7b9ede340978046bf0967672792978
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a0a50415f7c2d8a4e906c308e6b7f9e1, type: 2}
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}

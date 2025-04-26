@@ -60,7 +60,8 @@ namespace MadDuck.Scripts.Character
     {
         Normal,
         Stunned,
-        Dead
+        Dead,
+        CutScene
     }
 
     public struct ConditionStateEvent

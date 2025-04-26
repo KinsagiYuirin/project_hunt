@@ -31,6 +31,8 @@ namespace MadDuck.Scripts.Character.Module
         private bool useMMHealthBar = true;
         private YuirinHealthBar healthBar;
         
+        [SerializeField] private GameObject healthScreenUI;
+        
         [SerializeField] private Animator deadAnimator;
         
         /*

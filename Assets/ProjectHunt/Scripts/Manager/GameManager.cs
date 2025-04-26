@@ -3,6 +3,7 @@ using MadDuck.Scripts.Character;
 using MadDuck.Scripts.Character.Module;
 using TriInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameClearPanel;
     
+    [FormerlySerializedAs("startGameTime")]
     [Title("Settings")]
+    [SerializeField] private float prepareTime = 1f;
     [SerializeField] private float waitAnimationTime = 1f;
+    [SerializeField] private CameraZoom cameraZoom;
+    [SerializeField] private RadialFader radialFader;
+    [SerializeField] private CharacterMovementModule playerMovement;
+    [SerializeField] private Transform firstPosition;
+
+    [Title("Switch")] 
+    [SerializeField] private Switch switchPoint;
     
     public static GameManager Instance { get; private set; }
 
@@ -23,29 +33,50 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         gameOverPanel.SetActive(false);
+        //radialFader.SetUpFadeMaterial();
+        radialFader.StartRadialFadeOut(2f);
+        
+        enemyStatus.ChangeConditionState(CharacterConditionState.CutScene);
     }
     
     private void Update()
     {
-        if (playerStatus.ConditionState == CharacterConditionState.Dead)
+        if (switchPoint.IsStart)
         {
-            StartCoroutine(UpdatePlayerStatus());
+            playerStatus.ChangeConditionState(CharacterConditionState.CutScene);
+            StartCoroutine(PlayerPrepare());
         }
         
-        UpdateEnemyStatus();
+        //playerMovement.SetDirection( firstPosition.position - playerMovement.transform.position);
+        if (playerStatus.ConditionState == CharacterConditionState.Dead)
+        { StartCoroutine(UpdatePlayerStatus()); }
+        
+        if (enemyStatus.ConditionState == CharacterConditionState.Dead)
+        { StartCoroutine(UpdateEnemyStatus());}
     }
-    
+
+    IEnumerator PlayerPrepare()
+    {
+        yield return new WaitForSeconds(prepareTime);
+        playerStatus.ChangeConditionState(CharacterConditionState.Normal);
+        enemyStatus.ChangeConditionState(CharacterConditionState.Normal);
+    }
+        
     IEnumerator UpdatePlayerStatus()
     {
+        if (cameraZoom == null) yield break;
+        //cameraZoom.ZoomActive = false;
+        cameraZoom.SwitchCamera(false);
         yield return new WaitForSeconds(waitAnimationTime);
         gameOverPanel.SetActive(true);
     }
     
-    private void UpdateEnemyStatus()
+    IEnumerator UpdateEnemyStatus()
     {
-        if (enemyStatus.ConditionState == CharacterConditionState.Dead)
-        {
-            gameClearPanel.SetActive(true);
-        }
+        if (cameraZoom == null) yield break;
+        //cameraZoom.ZoomActive = false;
+        cameraZoom.SwitchCamera(false);
+        yield return new WaitForSeconds(waitAnimationTime);
+        gameClearPanel.SetActive(true);
     }
 }

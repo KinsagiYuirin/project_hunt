@@ -75,7 +75,10 @@ namespace MadDuck.Scripts.AI.ActionModule
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            InRangeAttack = false;
+            if (collision.CompareTag("Player"))
+            {
+                InRangeAttack = false;
+            }
         }
 
         private void MoveConditions(bool isWalking, bool isRun)
@@ -92,21 +95,6 @@ namespace MadDuck.Scripts.AI.ActionModule
             else if (!isWalking && !isRun)
             {
                 characterMovement.SetDirection(Vector2.zero);
-                
-                if (characterHub.ActionState != CharacterActionState.Basic) 
-                    Flip();
-            }
-        }
-        
-        private void Flip()
-        {
-            if (target.position.x > transform.position.x)
-            {
-                characterMovement.SpriteRenderer.flipX = false; // หันขวา
-            }
-            else
-            {
-                characterMovement.SpriteRenderer.flipX = true; // หันซ้าย
             }
         }
 

@@ -16,10 +16,10 @@ public class RadialFader : MonoBehaviour
     [SerializeField, DisplayAsString] private bool isFadeFinsh;
     public bool IsFadeFinsh => isFadeFinsh;
 
-    public void StartRadialFadeIn() => StartCoroutine(FadeRadial(2f, 0f));
-    public void StartRadialFadeOut() => StartCoroutine(FadeRadial(0f, 2f));
+    public void StartRadialFadeIn(float to) => StartCoroutine(FadeRadial(2f, to));
+    public void StartRadialFadeOut(float to) => StartCoroutine(FadeRadial(0f, to));
 
-    public void SetUpFadeMaterial()
+    void Start()
     {
         switch (needRevert)
         {
@@ -34,6 +34,7 @@ public class RadialFader : MonoBehaviour
 
     IEnumerator FadeRadial(float from, float to)
     {
+        fadeMaterial.SetFloat("_Fade", from);
         isFadeFinsh = false;
         float t = 0f;
         while (t < fadeDuration)
@@ -43,7 +44,7 @@ public class RadialFader : MonoBehaviour
             fadeMaterial.SetFloat("_Fade", value);
             yield return null;
         }
-        fadeMaterial.SetFloat("_Fade", to);
         isFadeFinsh = true;
+        fadeMaterial.SetFloat("_Fade", to);
     }
 }

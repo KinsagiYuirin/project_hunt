@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         fader.NeedRevert = false;
-        fader.SetUpFadeMaterial();
+        //fader.SetUpFadeMaterial();
         
         videoPlayer.CutScene.targetTexture = videoPlayer.RenderTexture;
         videoPlayer.VideoImage.texture = videoPlayer.RenderTexture;
@@ -59,7 +59,7 @@ public class MainMenu : MonoBehaviour
     
     private IEnumerator WaitForFadeThenActivate()
     {
-        fader.StartRadialFadeIn();
+        fader.StartRadialFadeIn(0);
         
         yield return new WaitUntil(() => fader.IsFadeFinsh);
 

@@ -1,46 +1,27 @@
 using TriInspector;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraZoom : MonoBehaviour
 {
-    public CinemachineVirtualCamera virtualCamera;
-    public CinemachineVirtualCamera virtualCamera2;
+    public CinemachineVirtualCamera zoomCamera;
+    public CinemachineVirtualCamera farCamera;
     
     [SerializeField] private float activeDistance = 5f;
-    [SerializeField, DisplayAsString] private bool active;
-    public bool Active { get => active; set => active = value; }
+    [SerializeField, DisplayAsString] private bool zoomZoomActive;
+    //public bool ZoomActive { get => zoomZoomActive; set => zoomZoomActive = value; }
 
     private void Start()
     {
-        active = false;
-        virtualCamera.gameObject.SetActive(true);
-        virtualCamera2.gameObject.SetActive(false);
+        zoomZoomActive = false;
+        zoomCamera.gameObject.SetActive(true);
+        farCamera.gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void SwitchCamera(bool zoom)
     {
-        if (active) 
-        {
-            SwitchToFarCamera();
-        }
-        else
-        {
-            SwitchToNearCamera();
-        }
-    }
-
-    private void SwitchToNearCamera()
-    {
-        // เปลี่ยนไปใช้กล้องใกล้
-        virtualCamera.gameObject.SetActive(true);
-        virtualCamera2.gameObject.SetActive(false);
-    }
-
-    private void SwitchToFarCamera()
-    {
-        // เปลี่ยนไปใช้กล้องไกล
-        virtualCamera.gameObject.SetActive(false);
-        virtualCamera2.gameObject.SetActive(true);
+        zoomCamera.gameObject.SetActive(zoom);
+        farCamera.gameObject.SetActive(!zoom);
     }
 }

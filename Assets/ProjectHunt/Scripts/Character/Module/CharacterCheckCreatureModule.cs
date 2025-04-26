@@ -13,15 +13,10 @@ public class CharacterCheckCreatureModule : CharacterModule
 
      
     [Title("Debug")]
+    [SerializeField] private Color lineColor = Color.green;
     [SerializeField, DisplayAsString] private List<Vector2> EnemyList;
     [SerializeField, DisplayAsString] private Vector2 closeEnemy;
     [SerializeField, DisplayAsString] private float previousDistance = Mathf.Infinity;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     protected override void UpdateModule()
@@ -80,7 +75,7 @@ public class CharacterCheckCreatureModule : CharacterModule
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = lineColor;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Numerics;
 using MadDuck.Scripts.Character;
 using MadDuck.Scripts.Character.Module;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Vector2 = UnityEngine.Vector2;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,21 +16,19 @@ public class GameManager : MonoBehaviour
     [Title("Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameClearPanel;
-    
-    [FormerlySerializedAs("startGameTime")]
+
     [Title("Settings")]
     [SerializeField] private float prepareTime = 1f;
     [SerializeField] private float waitAnimationTime = 1f;
     [SerializeField] private CameraZoom cameraZoom;
     [SerializeField] private RadialFader radialFader;
     [SerializeField] private CharacterMovementModule playerMovement;
-    [SerializeField] private Transform firstPosition;
 
     [Title("Switch")] 
     [SerializeField] private Switch switchPoint;
     
     [Title("Debug")]
-    [SerializeField, DisplayAsString] private bool isPreparing;
+    [SerializeField, DisplayAsString] private bool isPreparing = false;
     
     public static GameManager Instance { get; private set; }
 
@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
+        Debug.Log(playerStatus.ConditionState);
+        
         if (switchPoint.IsStart && !isPreparing)
         {
             isPreparing = true;
@@ -51,7 +53,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PlayerPrepare());
         }
         
-        //playerMovement.SetDirection( firstPosition.position - playerMovement.transform.position);
         if (playerStatus.ConditionState == CharacterConditionState.Dead)
         { StartCoroutine(UpdatePlayerStatus()); }
         
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayerPrepare()
     {
+        playerMovement.MoveDirection = Vector2.zero;
         yield return new WaitForSeconds(prepareTime);
         playerStatus.ChangeConditionState(CharacterConditionState.Normal);
         enemyStatus.ChangeConditionState(CharacterConditionState.Normal);

@@ -18,6 +18,7 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private SpriteRenderer spriteRenderer;
         public SpriteRenderer SpriteRenderer => spriteRenderer;
         [SerializeField] private Animator walkAnimator;
+        public Animator WalkAnimator { get => walkAnimator; set => walkAnimator = value; }
     
         [Title("Movement Settings")]
         [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
@@ -25,8 +26,8 @@ namespace MadDuck.Scripts.Character.Module
         
         [Title("Movement Debug")]
         [SerializeField, ReadOnly] protected Vector2 moveDirection;
-        public Vector2 MoveDirection => moveDirection;
-        
+        public Vector2 MoveDirection { get => moveDirection; set => moveDirection = value; }
+
         public bool isRunning = false;
         public bool isBackStepping = false;
         public Vector2 lastMoveDirection { get; private set; } = Vector2.right;
@@ -57,7 +58,6 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateModule()
         {
             base.UpdateModule();
-
             switch (isRunning)
             {
                 case true:
@@ -116,17 +116,16 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-
-            if (!isBackStepping)
-            {
-                if (walkAnimator != null)
+            
+            if (walkAnimator != null)
+                if (!isBackStepping)
+                {
                     walkAnimator.SetBool(IsMoving, moveDirection.magnitude != 0);
-            }
-            else
-            {
-                if (walkAnimator != null)
+                }
+                else
+                {
                     walkAnimator.SetBool(IsBackStep, moveDirection.magnitude != 0);
-            }
+                }
         }
     }
 }

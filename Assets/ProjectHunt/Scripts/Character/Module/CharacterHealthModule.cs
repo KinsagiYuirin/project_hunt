@@ -19,16 +19,12 @@ namespace MadDuck.Scripts.Character.Module
     public class CharacterHealthModule : CharacterModule
     {
         [Title("Health Settings")] 
-        [SerializeField]
-        public bool iFrame;
-        [SerializeField]
-        private HealthData healthData = new HealthData();
-        [SerializeField] 
-        private float startingHealth = 100;
-        [SerializeField]
-        private float bumpThreshold = 10f;
-        [SerializeField] 
-        private bool useMMHealthBar = true;
+        [SerializeField] public bool iFrame;
+        [SerializeField] private HealthData healthData = new HealthData();
+        public HealthData pHealthData => healthData;
+        [SerializeField] private float bumpThreshold = 10f;
+        [SerializeField] private bool useMMHealthBar = true;
+        
         private YuirinHealthBar healthBar;
         
         [SerializeField] private GameObject healthScreenUI;
@@ -49,7 +45,7 @@ namespace MadDuck.Scripts.Character.Module
 
         private void Start()
         {
-            healthData.currentHealth = startingHealth;
+            healthData.currentHealth = healthData.maxHealth;
             iFrame = false;
         }
 

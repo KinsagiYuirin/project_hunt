@@ -9,8 +9,8 @@ public class RadialFader : MonoBehaviour
     [Title("Settings")]
     public Material fadeMaterial;
     public float fadeDuration = 1f;
-    [SerializeField] private bool needRevert;
-    public bool NeedRevert { get => needRevert; set => needRevert = value; }
+    [FormerlySerializedAs("needRevert")] [SerializeField] private bool startBlack;
+    public bool NeedRevert { get => startBlack; set => startBlack = value; }
 
     [Title("Debug")]
     [SerializeField, DisplayAsString] private bool isFadeFinsh;
@@ -21,7 +21,7 @@ public class RadialFader : MonoBehaviour
 
     void Start()
     {
-        switch (needRevert)
+        switch (startBlack)
         {
             case true:
                 fadeMaterial.SetFloat("_Fade", 0f);

@@ -11,17 +11,20 @@ public class SettingHitEffect : MonoBehaviour
 
     [Header("Hit Effect")]
     [SerializeField] private float speed = 1f;
-    [SerializeField] private float minAlpha = 0.2f;
-    [SerializeField] private float maxAlpha = 0.8f;
+    [SerializeField, DisplayAsString] private float minAlpha = 0.2f;
+    [SerializeField, DisplayAsString] private float healthDifference;
+    [SerializeField, DisplayAsString] private float startAlpha = 0;
     
     void Update()
-    {
-        
+    { 
+       HpLow(healthDifference  = (characterHealthModule.pHealthData.maxHealth - characterHealthModule.pHealthData.currentHealth) / 100f);
     }
     
-    private void HpLow()
+    private void HpLow(float healthDifference)
     {
-        float alpha = Mathf.PingPong(Time.time * speed, maxAlpha - minAlpha) + minAlpha;
+        minAlpha = Mathf.Round(Mathf.Sqrt(healthDifference / 2f) * 100f) / 100f;
+ 
+        float alpha = Mathf.PingPong(Time.time * speed, healthDifference - startAlpha) + startAlpha;
         
         hitEffectColor.a = alpha;
         hitEffectMaterial.SetColor("_EdgeColor", hitEffectColor);

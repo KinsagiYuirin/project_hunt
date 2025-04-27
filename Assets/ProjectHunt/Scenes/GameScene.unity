@@ -236,13 +236,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1890978603}
+        m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
+        m_MethodName: MainMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -340,7 +340,7 @@ MonoBehaviour:
   comboParent: {fileID: 852162185}
   attackPatterns:
   - damageArea: {fileID: 2146894956}
-    damage: 100
+    damage: 5
     delay: 2
     duration: 1
     interval: 0.1
@@ -372,7 +372,7 @@ MonoBehaviour:
   comboParent: {fileID: 413029064}
   attackPatterns:
   - damageArea: {fileID: 607296028}
-    damage: 1
+    damage: 10
     delay: 0
     duration: 2
     interval: 0.1
@@ -8079,7 +8079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleEnabled: 1
   blockedMovementStates: 
-  blockedActionStates: 
+  blockedActionStates: 01000000
   blockedConditionStates: 
   characterMovement: {fileID: 520785525}
   target: {fileID: 696029842}
@@ -14651,13 +14651,13 @@ MonoBehaviour:
   enemyStatus: {fileID: 605205123}
   gameOverPanel: {fileID: 489419828}
   gameClearPanel: {fileID: 1875070519}
-  prepareTime: 1
+  prepareTime: 5
   waitAnimationTime: 1
   cameraZoom: {fileID: 1856646203}
   radialFader: {fileID: 1856646205}
   playerMovement: {fileID: 1849094882}
-  firstPosition: {fileID: 253704273}
   switchPoint: {fileID: 253704274}
+  isPreparing: 0
 --- !u!114 &1856646205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14672,7 +14672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeMaterial: {fileID: 2100000, guid: 05a78c1d5a22d114d86459560b01a7ba, type: 2}
   fadeDuration: 3
-  needRevert: 1
+  startBlack: 1
   isFadeFinsh: 0
 --- !u!114 &1856646206
 MonoBehaviour:
@@ -14689,9 +14689,11 @@ MonoBehaviour:
   hitEffectMaterial: {fileID: 2100000, guid: 804051b5fd679da49a34ec4c00dae827, type: 2}
   hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
   characterHealthModule: {fileID: 1400456641}
-  speed: 1
+  divide: 8
+  speed: 0.1
   minAlpha: 0.1
-  maxAlpha: 0.8
+  healthDifference: 0
+  startAlpha: 0
 --- !u!1 &1866689470
 GameObject:
   m_ObjectHideFlags: 0
@@ -15367,12 +15369,13 @@ MonoBehaviour:
   m_Graph: {fileID: 6537082018408954685, guid: 29968957f80bdc64fb2d9a9165ebbb33, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3319785430040707101
-  - rid: 3319785430040707102
-  - rid: 3319785444605690007
-  - rid: 3319785444605690087
-  - rid: 3319785444605690088
+  - rid: 3319785767909982520
+  - rid: 3319785767909982519
+  - rid: 3319785767909982484
+  - rid: 3319785767909982483
   - rid: 3319785541516657090
   - rid: 3319785541516657091
+  - rid: 3319785773839417635
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -15386,38 +15389,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Agent
         m_Value: {fileID: 2113591680}
-    - rid: 3319785430040707102
-      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.AI.ActionModule.TrackTarget, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 13615833489770248212
-          m_Value1: 17531733766189540733
-        Name: Target
-        m_Value: {fileID: 1002181061}
-    - rid: 3319785444605690007
-      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterBasicAttackModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 7056380536536589900
-          m_Value1: 7111532451537490320
-        Name: Basic Attack
-        m_Value: {fileID: 99739744}
-    - rid: 3319785444605690087
-      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterMovementModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 13889355170457611972
-          m_Value1: 15222885205886275364
-        Name: Running
-        m_Value: {fileID: 520785525}
-    - rid: 3319785444605690088
-      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterHeavyAttackModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 18295687351496209635
-          m_Value1: 15174530869368365395
-        Name: Heavy Attack
-        m_Value: {fileID: 99739745}
     - rid: 3319785541516657090
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -15434,6 +15405,46 @@ MonoBehaviour:
           m_Value1: 16316710794864416776
         Name: Max Heavy Attack limit
         m_Value: 3
+    - rid: 3319785767909982483
+      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.AI.ActionModule.TrackTarget, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9216335329731988328
+          m_Value1: 75151946743946803
+        Name: Target
+        m_Value: {fileID: 1002181061}
+    - rid: 3319785767909982484
+      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterBasicAttackModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 42826917198981178
+          m_Value1: 17380061567968273913
+        Name: BasicAttack
+        m_Value: {fileID: 99739744}
+    - rid: 3319785767909982519
+      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterHeavyAttackModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3015845813515610519
+          m_Value1: 3646330316463688718
+        Name: HeavyAttack
+        m_Value: {fileID: 99739745}
+    - rid: 3319785767909982520
+      type: {class: 'BlackboardVariable`1[[MadDuck.Scripts.Character.Module.CharacterMovementModule, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5007828349512790482
+          m_Value1: 17074475764791929749
+        Name: isRunning
+        m_Value: {fileID: 520785525}
+    - rid: 3319785773839417635
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 15102055353111467693
+          m_Value1: 12791913737561385795
+        Name: PlayerTransform
+        m_Value: {fileID: 696029842}
 --- !u!1 &2124878504
 GameObject:
   m_ObjectHideFlags: 0
@@ -16113,7 +16124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1874056769481055930, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.13
+      value: 6.41
       objectReference: {fileID: 0}
     - target: {fileID: 1874056769481055930, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16185,11 +16196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3051985765637949632, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: <RunningSpeed>k__BackingField
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3051985765637949632, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: <MovementSpeed>k__BackingField
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3051985765637949632, guid: 8964599c99f614f4b9121c3550f4197c, type: 3}
       propertyPath: blockedActionStates.Array.size

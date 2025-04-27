@@ -10,21 +10,23 @@ namespace MadDuck.Scripts.AI.ActionModule
 
     public class TrackTarget : CharacterModule
     {
-        [Title("AI Settings")] [SerializeField]
-        private CharacterMovementModule characterMovement;
+        [Title("AI Settings")] 
+        [SerializeField] private CharacterMovementModule characterMovement;
 
         [SerializeField] public Transform target;
 
         [SerializeField] private CharacterBasicAttackModule isBasicAttack;
         [SerializeField] private CharacterHeavyAttackModule isHeavyAttack;
         
-        [Title("Set Range")] [SerializeField] private float atkRange;
+        [Title("Set Range")] 
+        [SerializeField] private float atkRange;
         [SerializeField] private float outLimitRange;
 
-        [Title("Set Timer")] [SerializeField] private float atkRangeTimer;
+        [Title("Set Timer")] 
+        [SerializeField] private float atkRangeTimer;
 
-        [Title("Debug")] [SerializeField, DisplayAsString]
-        private float outRangeTimer;
+        [Title("Debug")] 
+        [SerializeField, DisplayAsString] private float outRangeTimer;
         
         
         [SerializeField, DisplayAsString] private float outAtkRangeTimer;

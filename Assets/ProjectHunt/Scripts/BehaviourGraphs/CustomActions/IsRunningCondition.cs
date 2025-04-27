@@ -11,7 +11,7 @@ public partial class IsRunningCondition : Condition
 
     public override bool IsTrue()
     {
-        return Running.Value.isRunning;
+        return Running?.Value != null && Running.Value.isRunning;
     }
 
     public override void OnStart()

@@ -11,11 +11,7 @@ public partial class IsAttackCondition : Condition
 
     public override bool IsTrue()
     {
-        if (Attack.Value.InRangeAttack)
-        {
-            return true;
-        }
-        return false;
+        return Attack.Value.InRangeAttack;
     }
 
     public override void OnStart()

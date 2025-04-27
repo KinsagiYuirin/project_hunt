@@ -12,7 +12,9 @@ public partial class BasicAttackAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<CharacterBasicAttackModule> Attack;
-    [SerializeReference] public BlackboardVariable<TrackTarget> Target;
+    [SerializeReference] public BlackboardVariable<Transform> Target;
+
+    private Vector3 _direction;
     
     protected override Status OnStart()
     {
@@ -21,10 +23,28 @@ public partial class BasicAttackAction : Action
 
     protected override Status OnUpdate()
     {
-        var Direction = Target.Value.target.position - Agent.Value.transform.position;
-        Attack.Value.SetAttackDirection(Direction);
+        if (Target.Value == null)
+        {
+            Debug.LogWarning("Target หรือ Target.target เป็น null");
+            return Status.Failure;
+        }
+    
+        if (Agent.Value == null)
+        {
+            Debug.LogWarning("Agent เป็น null");
+            return Status.Failure;
+        }
+    
+        if (Attack.Value == null)
+        {
+            Debug.LogWarning("Attack module เป็น null");
+            return Status.Failure;
+        }
+
+        var direction = Target.Value.position - Agent.Value.transform.position;
+        Attack.Value.SetAttackDirection(direction);
         Attack.Value.Attack();
-        return Status.Success;  
+        return Status.Success;
     }
 
     protected override void OnEnd()

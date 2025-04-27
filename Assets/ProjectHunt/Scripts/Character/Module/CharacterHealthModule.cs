@@ -9,7 +9,7 @@ namespace MadDuck.Scripts.Character.Module
     [Serializable]
     public record HealthData
     {
-        [ReadOnly] public float currentHealth;
+        public float currentHealth;
         public float maxHealth;
         public bool invincible;
     }

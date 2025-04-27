@@ -181,6 +181,7 @@ namespace MadDuck.Scripts.Character.Module
 
         protected virtual void StepAnimation(int step)
         {
+            if (attackAnimator == null) {return;}
             switch (step)
             {
                 case 0:

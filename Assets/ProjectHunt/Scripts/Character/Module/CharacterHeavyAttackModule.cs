@@ -21,8 +21,7 @@ namespace MadDuck.Scripts.Character.Module
         protected override void HandleInput()
         {
             if (characterHub.CharacterType is not CharacterType.Player) return;
-
-            // เปลี่ยนจาก LightAttackButton เป็น HeavyAttackButton
+            
             if (PlayerInput.HeavyAttackButton.isDown)
             {
                 Attack();
@@ -37,6 +36,7 @@ namespace MadDuck.Scripts.Character.Module
 
         protected override void StepAnimation(int step)
         {
+            if (attackAnimator == null) {return;}
             switch (step)
             {
                 case 0:

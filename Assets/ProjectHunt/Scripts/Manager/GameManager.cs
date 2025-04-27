@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [Title("Switch")] 
     [SerializeField] private Switch switchPoint;
     
+    [Title("Debug")]
+    [SerializeField, DisplayAsString] private bool isPreparing;
+    
     public static GameManager Instance { get; private set; }
 
     private void Start()
@@ -41,8 +44,9 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
-        if (switchPoint.IsStart)
+        if (switchPoint.IsStart && !isPreparing)
         {
+            isPreparing = true;
             playerStatus.ChangeConditionState(CharacterConditionState.CutScene);
             StartCoroutine(PlayerPrepare());
         }

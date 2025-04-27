@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private VideoPlayerScript videoPlayer;
     [SerializeField] private RadialFader fader;
     [SerializeField] private GameObject buttonPanel;
+    [SerializeField] private FadeUI[] fadeUI;
 
     private void Start()
     {
@@ -28,7 +29,6 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(PreloadScene("GameScene"));
         videoPlayer.CutScene.Play();
-        buttonPanel.SetActive(false);
     }
     
     public void QuitButton()
@@ -38,17 +38,14 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator PreloadScene(string sceneName)
     {
+        StartCoroutine(fadeUI[0].FadeOut());
         asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-
-        // รอจนกว่าจะโหลดถึง 90% (Unity จะหยุดไว้ที่ประมาณ 0.9)
+        
         while (asyncLoad.progress < 0.9f)
         {
-            Debug.Log("Loading progress: " + (asyncLoad.progress * 100) + "%");
             yield return null;
         }
-
-        Debug.Log("Scene ready! Waiting for activation...");
     }
 
     private void ActivateScene(VideoPlayer vp)

@@ -998,6 +998,8 @@ MonoBehaviour:
   videoPlayer: {fileID: 1387396154}
   fader: {fileID: 1387396155}
   buttonPanel: {fileID: 0}
+  fadeUI:
+  - {fileID: 1504608106}
 --- !u!4 &1387396153
 Transform:
   m_ObjectHideFlags: 0
@@ -1186,6 +1188,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1504608105}
+  - component: {fileID: 1504608107}
+  - component: {fileID: 1504608106}
   m_Layer: 5
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -1214,6 +1218,34 @@ RectTransform:
   m_AnchoredPosition: {x: 691, y: -229}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1504608106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504608104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9685e5b76f95b46896dca83cf800f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvasGroup: {fileID: 1504608107}
+  objectCanvasGroup: {fileID: 0}
+  fadeOutTime: 1
+  fadeInTime: 1
+--- !u!225 &1504608107
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504608104}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2005695384
 GameObject:
   m_ObjectHideFlags: 0

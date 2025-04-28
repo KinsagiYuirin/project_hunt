@@ -16,14 +16,17 @@ public class SettingHitEffect : MonoBehaviour
     [SerializeField, DisplayAsString] private float healthDifference;
     [SerializeField, DisplayAsString] private float startAlpha = 0;
     
-    void Update()
+    private void Update()
     { 
        HpLow(healthDifference  = (characterHealthModule.pHealthData.maxHealth - characterHealthModule.pHealthData.currentHealth) / 100f);
     }
     
     private void HpLow(float healthDifference)
     {
-        minAlpha = Mathf.Round(Mathf.Sqrt(healthDifference / divide) * 1000f) / 1000f;
+	    speed = 0.8333f * healthDifference - 0.1167f;
+		speed = Mathf.Max(0f, speed);
+        
+		minAlpha = Mathf.Round(Mathf.Sqrt(healthDifference / divide) * 1000f) / 1000f;
  
         float alpha = Mathf.PingPong(Time.time * speed, healthDifference - minAlpha) + minAlpha;
         

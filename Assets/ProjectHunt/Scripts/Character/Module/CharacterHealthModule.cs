@@ -28,6 +28,7 @@ namespace MadDuck.Scripts.Character.Module
         private YuirinHealthBar healthBar;
         
         [SerializeField] private GameObject healthScreenUI;
+        [SerializeField] private GameObject characterObject;
         
         [SerializeField] private Animator deadAnimator;
         
@@ -116,20 +117,16 @@ namespace MadDuck.Scripts.Character.Module
         {
             if (!ModulePermitted) return;
             characterHub.ChangeConditionState(CharacterConditionState.Dead);
+            characterObject.layer = LayerMask.NameToLayer("Dead");
+            characterObject.GetComponent<Collider2D>().enabled = false;
+            characterObject.GetComponent<Rigidbody2D>().simulated = false;
         }
 
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
             if (deadAnimator == null) return;
-            if (characterHub.ConditionState == CharacterConditionState.Dead)
-            {
-                deadAnimator.SetBool("IsDead", true);
-            }
-            else
-            {
-                deadAnimator.SetBool("IsDead", false);
-            }
+            deadAnimator.SetBool("IsDead", characterHub.ConditionState == CharacterConditionState.Dead);
         }
     }
 }

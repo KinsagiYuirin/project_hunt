@@ -10,53 +10,40 @@ public class CharacterCheckCreatureModule : CharacterModule
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private CharacterMovementModule characterMovement;
     [SerializeField] private Animator backStepAnimator;
-
-     
+    
     [Title("Debug")]
     [SerializeField] private Color lineColor = Color.green;
     [SerializeField, DisplayAsString] private List<Vector2> EnemyList;
     [SerializeField, DisplayAsString] private Vector2 closeEnemy;
     [SerializeField, DisplayAsString] private float previousDistance = Mathf.Infinity;
-
-    // Update is called once per frame
+    
     protected override void UpdateModule()
     {
         base.UpdateModule();
-        
         CalculateEnemyDistance();
     }
     
     private void CalculateEnemyDistance()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
-
-        float nearestDistance = Mathf.Infinity;
+        var hits = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
+        var nearestDistance = Mathf.Infinity;
         
         Transform nearestEnemy = null;
 
-        foreach (Collider2D hit in hits)
+        foreach (var hit in hits)
         {
-            float dist = Vector2.Distance(transform.position, hit.transform.position);
+            var dist = Vector2.Distance(transform.position, hit.transform.position);
 
-            if (dist < nearestDistance)
-            {
-                nearestDistance = dist;
-                nearestEnemy = hit.transform;
-            }
+            if (!(dist < nearestDistance)) continue;
+            nearestDistance = dist;
+            nearestEnemy = hit.transform;
         }
 
         if (nearestEnemy != null)
         {
-            // หัน sprite ตามตำแหน่งศัตรู
-            if (nearestEnemy.position.x > transform.position.x)
-            {
-                characterMovement.SpriteRenderer.flipX = false; // หันขวา
-            }
-            else
-            {
-                characterMovement.SpriteRenderer.flipX = true; // หันซ้าย
-            }
-
+            characterMovement.SpriteRenderer.flipX = !(nearestEnemy.position.x > transform.position.x); // หันขวา
+            // หันซ้าย
+            
             /*// เปรียบเทียบระยะ
             if (nearestDistance > previousDistance)
             {
@@ -67,9 +54,7 @@ public class CharacterCheckCreatureModule : CharacterModule
                 characterMovement.isBackStepping  = false;
             }
 
-            previousDistance = nearestDistance;
-
-            Debug.Log("ห่างขึ้น? " + characterMovement.isBackStepping );*/
+            previousDistance = nearestDistance;*/
         }
     }
     

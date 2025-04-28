@@ -38,14 +38,13 @@ namespace MadDuck.Scripts.Character.Module
         /// <summary>
         /// Flips the sprite based on the direction of movement.
         /// </summary>
-        public virtual void Flip()
+        protected virtual void Flip()
         {
-            bool shouldFlip = false;
-            
             if (moveDirection.x != 0)
             {
                 lastMoveDirection = moveDirection.normalized;
 
+                var shouldFlip = false;
                 if (!isBackStepping)
                     shouldFlip = moveDirection.x < 0;
                 else

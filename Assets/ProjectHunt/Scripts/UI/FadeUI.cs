@@ -9,17 +9,22 @@ public class FadeUI : MonoBehaviour
     [SerializeField] private GameObject objectCanvasGroup;
     [SerializeField] private float fadeOutTime = 1f;
     [SerializeField] private float fadeInTime = 1f;
+    [SerializeField] private bool startWithAlpha0;
     
     private void Start()
     {
-        fadeCanvasGroup.alpha = 1f;
+        fadeCanvasGroup.alpha = startWithAlpha0 ? 0f : 1f;
+        fadeCanvasGroup.interactable = !startWithAlpha0;
+        if (startWithAlpha0)
+            gameObject.SetActive(false);
+        
         objectCanvasGroup = gameObject;
     }
 
     public IEnumerator FadeOut()
     {
-        if (objectCanvasGroup.activeSelf == false)
-            yield break;
+        if (fadeCanvasGroup == null) yield break;
+        gameObject.SetActive(true);
         
         float timer = 0f;
         while (timer < fadeOutTime)
@@ -29,14 +34,15 @@ public class FadeUI : MonoBehaviour
             fadeCanvasGroup.alpha = alpha;
             yield return null;
         }
+        fadeCanvasGroup.interactable = true;
         fadeCanvasGroup.alpha = 0f;
     }
     
     public IEnumerator FadeIn()
     {
-        if (objectCanvasGroup.activeSelf == false)
-            yield break;
-        
+        if (fadeCanvasGroup == null) yield break;
+        gameObject.SetActive(true);
+
         float timer = 0f;
         while (timer < fadeInTime)
         {
@@ -46,5 +52,6 @@ public class FadeUI : MonoBehaviour
             yield return null;
         }
         fadeCanvasGroup.alpha = 1f;
+        fadeCanvasGroup.interactable = true;
     }
 }

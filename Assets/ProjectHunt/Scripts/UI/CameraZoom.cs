@@ -13,8 +13,7 @@ public class CameraZoom : MonoBehaviour
     //public bool ZoomActive { get => zoomZoomActive; set => zoomZoomActive = value; }
 
     private void Start()
-    {
-        zoomZoomActive = false;
+    {        
         zoomCamera.gameObject.SetActive(true);
         farCamera.gameObject.SetActive(false);
     }

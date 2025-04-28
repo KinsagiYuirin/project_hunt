@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace MadDuck.Scripts.AI.ActionModule
 {
-
     public class TrackTarget : CharacterModule
     {
         [Title("AI Settings")] 
@@ -41,6 +40,7 @@ namespace MadDuck.Scripts.AI.ActionModule
         protected override void UpdateModule()
         {
             base.UpdateModule();
+            
             aiToTargetDistance = Vector2.Distance(transform.position, target.position);
 
             OutOfAttackRange();

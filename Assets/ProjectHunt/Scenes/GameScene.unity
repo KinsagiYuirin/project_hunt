@@ -19767,7 +19767,7 @@ GameObject:
   - component: {fileID: 1811193079}
   - component: {fileID: 1811193081}
   - component: {fileID: 1811193080}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -109,64 +109,20 @@ TextureImporter:
       name: 1_HeavyAtk_v2_0
       rect:
         serializedVersion: 2
-        x: 155
-        y: 41
-        width: 358
-        height: 413
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0fad4ff918068e640800000000000000
-      internalID: 5109439887102499568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_HeavyAtk_v2_1
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 155
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce39597843fc4f540800000000000000
-      internalID: 5040881707454403564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1_HeavyAtk_v2_2
-      rect:
-        serializedVersion: 2
-        x: 630
-        y: 68
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 79b408f19510d3730800000000000000
-      internalID: 3980339127957605271
+      spriteID: 657b6680d773d7c45aa52b10ec1c27f6
+      internalID: 99634356
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c51b244ed94319a4ca8fe486bfa7ff4b
     internalID: 0
     vertices: []
     indices: 
@@ -184,7 +140,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      1_HeavyAtk_v2_0: 99634356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

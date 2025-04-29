@@ -23,6 +23,7 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Movement Settings")]
         [field: SerializeField] public float MovementSpeed { get; private set; } = 4f;
         [field: SerializeField] public float RunningSpeed { get; private set; } = 2f;
+        [SerializeField] private AudioSource walkSound;
         
         [Title("Movement Debug")]
         [SerializeField, ReadOnly] protected Vector2 moveDirection;
@@ -117,14 +118,7 @@ namespace MadDuck.Scripts.Character.Module
             base.UpdateAnimator();
             
             if (walkAnimator != null)
-                if (!isBackStepping)
-                {
-                    walkAnimator.SetBool(IsMoving, moveDirection.magnitude != 0);
-                }
-                else
-                {
-                    walkAnimator.SetBool(IsBackStep, moveDirection.magnitude != 0);
-                }
+                walkAnimator.SetBool(!isBackStepping ? IsMoving : IsBackStep, moveDirection.magnitude != 0);
         }
     }
 }

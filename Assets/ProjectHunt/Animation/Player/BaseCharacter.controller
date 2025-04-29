@@ -337,7 +337,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsDrawnLightSword
+  - m_Name: IsDrawnLightAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -401,7 +401,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsDrawnLightSword
+    m_ConditionEvent: IsDrawnLightAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -809125625740422503}
@@ -740,7 +740,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LightAttackTest
-  m_Speed: 1.4
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7951271753493489599}
@@ -975,7 +975,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 794a4e84017abb948a34501931840a54, type: 2}
+  m_Motion: {fileID: 7400000, guid: 792d9fe561598584e9a2246b587a36cd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1052,7 +1052,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 685d735a85f939642bd19d0a8b6b22fd, type: 2}
+  m_Motion: {fileID: 7400000, guid: beea1d447b703cf46a3a578543478654, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

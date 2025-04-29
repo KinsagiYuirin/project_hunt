@@ -32,10 +32,15 @@ namespace MadDuck.Scripts.Character.Module
         
         [Title("Animator")]
         [SerializeField] protected Animator attackAnimator;
-        private static readonly int IsDrawnLightSword = Animator.StringToHash("IsDrawnLightSword");
+        private static readonly int IsDrawnLightSword = Animator.StringToHash("IsDrawnLightAttack");
         private static readonly int IsLightAttack = Animator.StringToHash("IsLightAttack");
-        [SerializeField, DisplayAsString] protected bool IsSwordDrawn;
-        [SerializeField, DisplayAsString] protected bool IsAttacking;
+        [SerializeField, DisplayAsString] private bool IsSwordDrawn;
+        [SerializeField, DisplayAsString] private bool IsAttacking;
+
+        [Title("Sound")] 
+        [SerializeField] private bool haveAttackSound;
+        [SerializeField, ShowIf("haveAttackSound")] private AudioSource audioSource;
+        [SerializeField, ShowIf("haveAttackSound")] private AudioClip attackSound; 
         
         [Title("Debug")]
         [SerializeField, DisplayAsString] protected int currentPatternIndex;
@@ -144,6 +149,11 @@ namespace MadDuck.Scripts.Character.Module
             if (!ModulePermitted) return;
             if (!attackReady) return;
             if (attackCoroutine != null) return;
+
+            if (haveAttackSound)
+            {
+                audioSource.PlayOneShot(attackSound);
+            }
             attackCoroutine = StartCoroutine(AttackCoroutine());
         }
 
@@ -161,6 +171,9 @@ namespace MadDuck.Scripts.Character.Module
         /// <returns></returns>
         protected virtual IEnumerator AttackCoroutine()
         {
+            IsSwordDrawn = false;
+            IsAttacking = false;
+            
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
             characterHub.ChangeActionState(CharacterActionState.Basic);
@@ -202,7 +215,11 @@ namespace MadDuck.Scripts.Character.Module
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-            if (attackAnimator == null) {return;}
+            if (attackAnimator == null)
+            {
+                Debug.LogWarning("Attack animator is not assigned.");
+                return;
+            }
             attackAnimator.SetBool(IsDrawnLightSword, IsSwordDrawn);    
             attackAnimator.SetBool(IsLightAttack, IsAttacking);
         }

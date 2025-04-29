@@ -16,6 +16,8 @@ public class CharacterCheckCreatureModule : CharacterModule
     [SerializeField, DisplayAsString] private List<Vector2> EnemyList;
     [SerializeField, DisplayAsString] private Vector2 closeEnemy;
     [SerializeField, DisplayAsString] private float previousDistance = Mathf.Infinity;
+    private Transform nearestEnemy = null;
+    public Transform NearestEnemy => nearestEnemy;
     
     protected override void UpdateModule()
     {
@@ -28,7 +30,7 @@ public class CharacterCheckCreatureModule : CharacterModule
         var hits = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
         var nearestDistance = Mathf.Infinity;
         
-        Transform nearestEnemy = null;
+        nearestEnemy = null;
 
         foreach (var hit in hits)
         {

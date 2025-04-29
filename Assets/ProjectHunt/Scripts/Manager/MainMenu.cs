@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private RadialFader fader;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private FadeUI[] fadeUI;
+    [SerializeField] private GameObject tutorialPanel;
 
     private void Start()
     {
@@ -29,6 +30,16 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(PreloadScene("GameScene"));
         videoPlayer.CutScene.Play();
+    }
+    
+    public void TutorialButton()
+    {
+        tutorialPanel.SetActive(true);
+    }
+    
+    public void CloseTutorialButton()
+    {
+        tutorialPanel.SetActive(false);
     }
     
     public void QuitButton()

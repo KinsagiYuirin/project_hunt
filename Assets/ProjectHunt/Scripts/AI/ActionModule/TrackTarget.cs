@@ -7,105 +7,102 @@ using UnityEngine;
 
 namespace MadDuck.Scripts.AI.ActionModule
 {
-    public class TrackTarget : CharacterModule
+public class TrackTarget : CharacterModule
+{
+    [Title("AI Settings")] 
+    [SerializeField] private CharacterMovementModule characterMovement;
+    [SerializeField] private CharacterCheckCreatureModule checkCreatureModule;
+    
+    [SerializeField] public Transform target;
+
+    [SerializeField] private CharacterBasicAttackModule isBasicAttack;
+    [SerializeField] private CharacterHeavyAttackModule isHeavyAttack;
+    
+    [Title("Set Range")] 
+    [SerializeField] private float atkRange;
+    [SerializeField] private float outLimitRange;
+
+    [Title("Set Timer")] 
+    [SerializeField] private float atkRangeTimer;
+    [SerializeField] private float attackCooldown = 1.5f;
+    private float attackCooldownTimer = 0f;
+
+    [Title("DebugLog")] 
+    [SerializeField, DisplayAsString] private float outRangeTimer;
+    [SerializeField, DisplayAsString] private float outAtkRangeTimer;
+    [SerializeField, DisplayAsString] public bool InRangeAttack;
+    [SerializeField, DisplayAsString] public float aiToTargetDistance;
+    [SerializeField, DisplayAsString] public bool isAttacking;
+
+    protected override void UpdateModule()
     {
-        [Title("AI Settings")] 
-        [SerializeField] private CharacterMovementModule characterMovement;
+        base.UpdateModule();
 
-        [SerializeField] public Transform target;
+        aiToTargetDistance = Vector2.Distance(transform.position, target.position);
 
-        [SerializeField] private CharacterBasicAttackModule isBasicAttack;
-        [SerializeField] private CharacterHeavyAttackModule isHeavyAttack;
-        
-        [Title("Set Range")] 
-        [SerializeField] private float atkRange;
-        [SerializeField] private float outLimitRange;
+        OutOfAttackRange();
+        CheckPlayer();
 
-        [Title("Set Timer")] 
-        [SerializeField] private float atkRangeTimer;
-
-        [Title("Debug")] 
-        [SerializeField, DisplayAsString] private float outRangeTimer;
-        
-        
-        [SerializeField, DisplayAsString] private float outAtkRangeTimer;
-        [SerializeField, DisplayAsString] public bool InRangeAttack;
-        [SerializeField, DisplayAsString] public float aiToTargetDistance;
-
-        private void Start()
+        if (attackCooldownTimer > 0)
         {
-            gameObject.GetComponent<CircleCollider2D>().radius = atkRange;
+            attackCooldownTimer -= Time.deltaTime;
         }
 
-        protected override void UpdateModule()
+        if (InRangeAttack && attackCooldownTimer <= 0)
         {
-            base.UpdateModule();
+            isAttacking = true;
+            attackCooldownTimer = attackCooldown;
+        }
+        else { isAttacking = false; }
+    }
+
+    private void OutOfAttackRange()
+    {
+        if (aiToTargetDistance > outLimitRange)
+            MoveConditions(false, true);
+
+        if (aiToTargetDistance > atkRange)
+        {
+            outAtkRangeTimer += Time.deltaTime;
+            if (outAtkRangeTimer < atkRangeTimer) return;
             
-            aiToTargetDistance = Vector2.Distance(transform.position, target.position);
-
-            OutOfAttackRange();
+            MoveConditions(true, false);
         }
-
-        private void OutOfAttackRange()
+        else
         {
-
-            if (aiToTargetDistance > outLimitRange)
-                MoveConditions(false, true);
-
-            if (aiToTargetDistance > atkRange)
-            {
-                outAtkRangeTimer += Time.deltaTime;
-                if (outAtkRangeTimer < atkRangeTimer) return;
-                
-                MoveConditions(true, false);
-            }
-            else
-            {
-                MoveConditions(false, false);
-                InRangeAttack = true;
-                outAtkRangeTimer = 0;
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                InRangeAttack = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                InRangeAttack = false;
-            }
-        }
-
-        private void MoveConditions(bool isWalking, bool isRun)
-        {
-            if (isWalking && !isRun)
-            {
-                characterMovement.SetDirection(target.position - transform.position);
-            }
-            else if (!isWalking && isRun)
-            {
-                characterMovement.isRunning = true;
-                characterMovement.SetDirection(target.position - transform.position);
-            }
-            else if (!isWalking && !isRun)
-            {
-                characterMovement.SetDirection(Vector2.zero);
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, atkRange);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, outLimitRange);
+            MoveConditions(false, false);
+            outAtkRangeTimer = 0;
         }
     }
+
+    private void CheckPlayer()
+    {
+        InRangeAttack = aiToTargetDistance <= atkRange;
+    }
+
+    private void MoveConditions(bool isWalking, bool isRun)
+    {
+        if (isWalking && !isRun)
+        {
+            characterMovement.SetDirection(target.position - transform.position);
+        }
+        else if (!isWalking && isRun)
+        {
+            characterMovement.isRunning = true;
+            characterMovement.SetDirection(target.position - transform.position);
+        }
+        else if (!isWalking && !isRun)
+        {
+            characterMovement.SetDirection(Vector2.zero);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, atkRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, outLimitRange);
+    }
+}
 }

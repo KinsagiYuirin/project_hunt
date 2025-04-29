@@ -34,6 +34,7 @@ namespace MadDuck.Scripts.Character
     {
         None,
         Basic,
+        Heavy,
         Skill,
         Ultimate
     }

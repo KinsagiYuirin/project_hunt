@@ -13,7 +13,8 @@ namespace MadDuck.Scripts.Utils
     {
         [Title("Modules")]
         [SerializeField] private CharacterMovementModule movementModule;
-        [FormerlySerializedAs("dodgeDirection")]
+        [SerializeField] private CharacterCheckCreatureModule checkCreatureModule;
+        [SerializeField] private bool fullKeyboardControl;
         [Title("Debug")]
         [SerializeField, DisplayAsString] private bool isUsingController;
         
@@ -36,7 +37,47 @@ namespace MadDuck.Scripts.Utils
         void Update()
         {
             DetectController();
-            
+
+            if (fullKeyboardControl)
+            {
+                FullControlWithKeyboard();
+            }
+            else
+            {
+                ControlWithMouseOrJoy();
+            }
+        }
+        
+        private void FullControlWithKeyboard()
+        {
+            switch (checkCreatureModule.NearestEnemy)
+            {
+                case null:
+                    if (movementModule.lastMoveDirection.x > 0f)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (movementModule.lastMoveDirection.x < 0f)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    break;
+                
+                case not null:
+                    if (checkCreatureModule.NearestEnemy.position.x > transform.position.x)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (checkCreatureModule.NearestEnemy.position.x < transform.position.x)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    break;
+            }
+        }
+
+        private void ControlWithMouseOrJoy()
+        {
             if (isUsingController)
             {
                 
@@ -65,7 +106,6 @@ namespace MadDuck.Scripts.Utils
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
-            
         }
     }
 }

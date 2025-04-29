@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [Title("Settings")]
     [SerializeField] private float prepareTime = 1f;
     [SerializeField] private float waitAnimationTime = 1f;
+    [SerializeField] private float waitBossAnimetionTime = 5f;
     [SerializeField] private CameraZoom cameraZoom;
     [SerializeField] private RadialFader radialFader;
     [SerializeField] private CharacterMovementModule playerMovement;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(playerStatus.ConditionState);
+        Debug.Log(enemyStatus.ConditionState);
         
         if (ShouldPreparePlayer())
         {
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour
             yield return StartCoroutine(inGameCutScene.PlayCutscene());
         }
         
-        yield return new WaitForSeconds(waitAnimationTime);
+        yield return new WaitForSeconds(waitBossAnimetionTime);
         
         darkLightParticle.Play();
         playerStatus.ChangeConditionState(CharacterConditionState.Normal);

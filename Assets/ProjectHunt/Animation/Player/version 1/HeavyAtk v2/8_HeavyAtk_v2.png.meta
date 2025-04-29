@@ -106,42 +106,20 @@ TextureImporter:
       name: 8_HeavyAtk_v2_0
       rect:
         serializedVersion: 2
-        x: 143
-        y: 50
-        width: 348
-        height: 418
+        x: 0
+        y: 0
+        width: 700
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f64d44e13898fd30800000000000000
-      internalID: 4465486370588935922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8_HeavyAtk_v2_1
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 459
-        width: 232
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 77b349ebb65a07550800000000000000
-      internalID: 6156602572792937335
+      spriteID: 50f2d0bd802be8d4293a14c4585d2fc8
+      internalID: 853085694
       vertices: []
       indices: 
       edges: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0f9fd0ca414f8e7439d07593e8fd2546
     internalID: 0
     vertices: []
     indices: 
@@ -159,7 +137,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      8_HeavyAtk_v2_0: 853085694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

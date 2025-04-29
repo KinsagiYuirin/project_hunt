@@ -2,6 +2,7 @@ using System;
 using MadDuck.Scripts.Utils;
 using TriInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Collider2D))]
 public class DamageArea : MonoBehaviour
@@ -9,6 +10,12 @@ public class DamageArea : MonoBehaviour
     [SerializeField] protected LayerMask targetLayer;
 
     protected Collider2D damageCollider;
+    
+    [Title("Audio")]
+    [SerializeField] private bool haveAttackSound;
+    [SerializeField, ShowIf("haveAttackSound")] private AudioSource attackSound;
+    [SerializeField] private AudioClip[] attackClips;
+    
     public delegate void OnHit(Collider2D collider);
     public event OnHit OnHitEvent;
 
@@ -33,6 +40,9 @@ public class DamageArea : MonoBehaviour
         if (LayerMaskUtils.IsInLayerMask(other.gameObject.layer, targetLayer))
         {
             OnHitEvent?.Invoke(other);
+            
+            var clip = attackClips[Random.Range(0, attackClips.Length)];
+            attackSound.PlayOneShot(clip);
         }
     }
 }

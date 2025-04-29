@@ -13,8 +13,8 @@ namespace MadDuck.Scripts.Character.Module
         private static readonly int IsDrawnHeavyAttack = Animator.StringToHash("IsDrawnHeavyAttack");
         private static readonly int IsHeavyAttack = Animator.StringToHash("IsHeavyAttack");
 
-        private bool IsHeavySwordDrawn;
-        private bool IsHeavyAttacking;
+        [SerializeField, DisplayAsString] private bool IsHeavySwordDrawn;
+        [SerializeField, DisplayAsString] private bool IsHeavyAttacking;
         
         [SerializeField] private CharacterMovementModule movementModule;
         
@@ -30,7 +30,25 @@ namespace MadDuck.Scripts.Character.Module
         
         protected override IEnumerator AttackCoroutine()
         {
-            yield return base.AttackCoroutine();
+            IsHeavySwordDrawn = false;
+            IsHeavyAttacking = false;
+            
+            if (CurrentPattern == null) yield break;
+            currentComboTime = 0;
+            characterHub.ChangeActionState(CharacterActionState.Heavy);
+            StepAnimation(0);
+            yield return new WaitForSeconds(CurrentPattern.Value.delay);
+            StepAnimation(1);
+            CurrentPattern.Value.damageArea.SetActive(true);
+            StepAnimation(2);
+            yield return new WaitForSeconds(CurrentPattern.Value.duration);
+            StepAnimation(3);
+            CurrentPattern.Value.damageArea.SetActive(false);
+            characterHub.ChangeActionState(CharacterActionState.None);
+            previousPatternIndex = currentPatternIndex;
+            currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;
+            attackReady = false;
+            attackCoroutine = null;
             movementModule.isRunning = false;
         }
 

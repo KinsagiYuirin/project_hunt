@@ -1,5 +1,6 @@
 using System;
 using MadDuck.Scripts.Character;
+using MadDuck.Scripts.Character.Module;
 using TriInspector;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,18 +18,23 @@ public class CameraSetting
     public CameraZoom cameraZoom;
     [SerializeField] private bool isStart;
     public bool IsStart { get => isStart; set => isStart = value; }
+    
+    [SerializeField] private CharacterHealthModule bossHealthModule;
+    
 
     public void Initialize()
     {
         isStart = false;
     }
     
-    public void Event(bool isBool)
+    public void Event(bool isBool, MonoBehaviour mono)
     {
         if (cameraZoom != null)
         {
             isStart = true;
             cameraZoom.SwitchCamera(!isBool);
+            float targetPercent = Mathf.Clamp01(bossHealthModule.pHealthData.currentHealth / bossHealthModule.pHealthData.maxHealth);
+            mono.StartCoroutine(bossHealthModule.YuirinHealthBar.FillSmoothly(targetPercent));
         }
         else { Debug.LogWarning("CameraZoom is not assigned in CameraSetting!"); }
     }
@@ -77,6 +83,10 @@ public class Switch : MonoBehaviour
     private EndGameSetting endGameSetting;
     public EndGameSetting EndGameSetting { get => endGameSetting; set => endGameSetting = value; }
 
+    [Header("Details")]
+    [SerializeField] private bool haveLimit;
+    [SerializeField, ShowIf("haveLimit")] private int useCount;
+    
     private void Start()
     {
         cameraSetting?.Initialize();
@@ -86,6 +96,13 @@ public class Switch : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!switchActive) return;
+
+        if (haveLimit)
+        {
+            if (useCount <= 0) switchActive = false;
+            useCount--;
+        }
+        
         if (other.CompareTag("Player"))
         { ExecuteSwitch(); }
     }
@@ -96,7 +113,7 @@ public class Switch : MonoBehaviour
         switch (executeSwitchAction)
         {
             case ExecuteSwitchAction.Camera:
-                cameraSetting.Event(turnOn);
+                cameraSetting.Event(turnOn, this);
                 break;
             
             case ExecuteSwitchAction.EndGame:

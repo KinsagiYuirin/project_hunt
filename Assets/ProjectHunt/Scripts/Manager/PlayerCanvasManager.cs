@@ -18,7 +18,7 @@ namespace MadDuck.Scripts.Manangers
             targetProgressBar.LerpDecreasingDelayedBar = bump;
             targetProgressBar.LerpIncreasingDelayedBar = bump;
             */
-            manaBar.UpdateBar(currentMana, 0, maxMana, true);
+            //manaBar.UpdateBar(currentMana, 0, maxMana, true);
         }
         
         public void UpdateHealthBar(float currentHealth, float maxHealth, bool bump = false)
@@ -32,7 +32,7 @@ namespace MadDuck.Scripts.Manangers
             targetProgressBar.LerpIncreasingDelayedBar = bump;
             */
             
-            healthBar.UpdateBar(currentHealth, 0, maxHealth, true);
+            //healthBar.UpdateBar(currentHealth, 0, maxHealth, true);
         }
     }
 }

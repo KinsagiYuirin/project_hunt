@@ -15,8 +15,6 @@ public class FadeUI : MonoBehaviour
     {
         fadeCanvasGroup.alpha = startWithAlpha0 ? 0f : 1f;
         fadeCanvasGroup.interactable = !startWithAlpha0;
-        if (startWithAlpha0)
-            gameObject.SetActive(false);
         
         objectCanvasGroup = gameObject;
     }

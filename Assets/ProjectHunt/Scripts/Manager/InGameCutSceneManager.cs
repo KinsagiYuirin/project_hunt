@@ -15,9 +15,9 @@ public class InGameCutSceneManager : MonoBehaviour
     [SerializeField, DisplayAsString] private double videoLength;
     public double VideoLength { get => videoLength;}
 
-    private void Start()
+    private void Awake()
     {
-        Debug.Log(videoLength = videoPlayerScript.CutScene.clip.length);
+        videoLength = videoPlayerScript.CutScene.clip.length;
     }
 
     public void StartCutsceneFlow()
@@ -56,7 +56,7 @@ public class InGameCutSceneManager : MonoBehaviour
         fadeSlideUI.StartFadeSlide();
         videoPlayerScript.CutScene.Play();
 
-        yield return new WaitForSecondsRealtime((float)videoPlayerScript.CutScene.clip.length); 
+        yield return new WaitForSecondsRealtime((float)videoLength); 
 
         Debug.Log("Cutscene End");
     }

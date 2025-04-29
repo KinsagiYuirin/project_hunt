@@ -18,6 +18,8 @@ public class FadeSlideUI : MonoBehaviour
     [SerializeField] private float stayDuration = 2.0f; // เวลาที่อยู่เฉยๆก่อนเริ่ม FadeOut
     public float StayDuration { get => stayDuration; set => stayDuration = value; }
 
+    private float timer = 0f;
+    
     private void Awake()
     {
         gameObject.SetActive(true);
@@ -33,13 +35,25 @@ public class FadeSlideUI : MonoBehaviour
 
     private IEnumerator FadeSlideRoutine()
     {
-        // Reset เริ่มต้น
-        rectTransform.anchoredPosition = startPosition;
-        canvasGroup.alpha = 0f;
-
         // -------------------
         // FadeIn + SlideIn
-        float timer = 0f;
+        yield return StartCoroutine(FadeSlideIn());
+
+        // -------------------
+        // Stay (รอค้างกลางจอ)
+        yield return new WaitForSeconds(stayDuration);
+
+        // -------------------
+        // FadeOut + SlideOut (ย้อนกลับไปทางเดิม)
+        yield return StartCoroutine(FadeSlideOut());
+    }
+
+    private IEnumerator FadeSlideIn()
+    {
+        rectTransform.anchoredPosition = startPosition;
+        canvasGroup.alpha = 0f;
+        
+        timer = 0f;
         while (timer < fadeInDuration)
         {
             timer += Time.deltaTime;
@@ -53,12 +67,10 @@ public class FadeSlideUI : MonoBehaviour
         rectTransform.anchoredPosition = stayPosition;
         canvasGroup.alpha = 1f;
 
-        // -------------------
-        // Stay (รอค้างกลางจอ)
-        yield return new WaitForSeconds(stayDuration);
+    }
 
-        // -------------------
-        // FadeOut + SlideOut (ย้อนกลับไปทางเดิม)
+    private IEnumerator FadeSlideOut()
+    {
         timer = 0f;
         while (timer < fadeOutDuration)
         {

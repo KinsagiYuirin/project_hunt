@@ -3,6 +3,7 @@ using MadDuck.Scripts.Manangers;
 using MadDuck.Scripts.Utils;
 using TriInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MadDuck.Scripts.Character.Module
 {
@@ -23,9 +24,10 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private HealthData healthData = new HealthData();
         public HealthData pHealthData => healthData;
         [SerializeField] private float bumpThreshold = 10f;
-        [SerializeField] private bool useMMHealthBar = true;
+        [SerializeField] private bool useHealthBar = true;
         
-        private YuirinHealthBar healthBar;
+        [SerializeField] private YuirinHealthBar yuirinHealthBar;
+        public YuirinHealthBar YuirinHealthBar => yuirinHealthBar;
         
         [SerializeField] private GameObject healthScreenUI;
         [SerializeField] private GameObject characterObject;
@@ -68,9 +70,16 @@ namespace MadDuck.Scripts.Character.Module
             {
                 Die();
             }
-            //UpdateHealthBar();
+            UpdateHealthBar();
         }
 
+        public void UpdateHealthBar()
+        {
+            if (yuirinHealthBar == null) return;
+            if (!useHealthBar) return;
+            yuirinHealthBar.UpdateHealthUI(healthData.currentHealth, healthData.maxHealth);
+        }
+        
         
         /*
         public virtual void UpdateHealthBar()

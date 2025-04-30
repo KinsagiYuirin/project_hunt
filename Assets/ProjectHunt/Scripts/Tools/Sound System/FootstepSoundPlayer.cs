@@ -12,6 +12,8 @@ public class FootstepSoundPlayer : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private CharacterMovementModule objectRb;
 
+    
+    private int footstepIndex = 0;
     private float stepTimer = 0f;
 
     private void Update()
@@ -36,8 +38,10 @@ public class FootstepSoundPlayer : MonoBehaviour
     {
         if (footstepClips.Length == 0 || audioSource == null) return;
 
-        var clip = footstepClips[Random.Range(0, footstepClips.Length)];
+        var clip = footstepClips[footstepIndex];
         var volume = Random.Range(volumeRange.x, volumeRange.y);
         audioSource.PlayOneShot(clip, volume);
+
+        footstepIndex = (footstepIndex + 1) % footstepClips.Length;
     }
 }

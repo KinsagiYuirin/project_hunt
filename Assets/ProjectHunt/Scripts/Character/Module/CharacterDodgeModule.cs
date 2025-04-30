@@ -30,13 +30,14 @@ namespace MadDuck.Scripts.Character.Module
         
         private static readonly int IsDash = Animator.StringToHash("IsDash");
 
+        private int initialDodgeTimes;
+
         private void Start()
         {
             playerLayer = LayerMask.NameToLayer("Player");
             enemyLayer = LayerMask.NameToLayer("Enemy");
-            
-            
-            
+
+            initialDodgeTimes = dodgeTimes; // เก็บค่าเริ่มต้นของ dodgeTimes
             dodgeDirection = Vector2.zero;
             dodgeReady = true;
         }
@@ -53,7 +54,7 @@ namespace MadDuck.Scripts.Character.Module
             if (!dodgeReady) return;
             if (!ModulePermitted) return;
             if (dodgeCoroutine != null) return;
-            
+
             dodgeCoroutine = StartCoroutine(DodgeCoroutine());
         }
         
@@ -64,7 +65,7 @@ namespace MadDuck.Scripts.Character.Module
             base.HandleInput();
             if (PlayerInput.DodgeButton.isDown) { GetDodge(); }
         }
-        
+
         /// <summary>
         /// Coroutine that handles the timing of the dodge.
         /// </summary>
@@ -73,14 +74,14 @@ namespace MadDuck.Scripts.Character.Module
         {
             dodgeReady = false;
             characterHub.ChangeMovementState(CharacterMovementState.Dodge);
-            dodgeTimes --;
-            
+            dodgeTimes--;
+
             healthModule.iFrame = true;
             Debug.Log("iFrame is true");
-            
+
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
 
-            dodgeDirection = movementModule.lastMoveDirection; 
+            dodgeDirection = movementModule.lastMoveDirection;
             float elapsedTime = 0;
             while (elapsedTime < dodgeDuration)
             {
@@ -88,35 +89,32 @@ namespace MadDuck.Scripts.Character.Module
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+
             healthModule.iFrame = false;
             Debug.Log("iFrame is false");
-            
+
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
-            
-            if (movementModule.MoveDirection.magnitude != 0f)
-            {
-                characterHub.ChangeMovementState(CharacterMovementState.Walking);
-            }
-            else
-            {
-                characterHub.ChangeMovementState(CharacterMovementState.Idle);
-            }
-            
+
+            characterHub.ChangeMovementState(movementModule.MoveDirection.magnitude != 0f
+                ? CharacterMovementState.Walking
+                : CharacterMovementState.Idle);
+
             yield return new WaitForSeconds(dodgeCooldown);
 
             dodgeReady = true;
             dodgeCoroutine = null;
-            dodgeTimes++;
+            
+            // รีเซ็ต dodgeTimes ให้ไม่เกินค่าเริ่มต้น
+            if (dodgeTimes < initialDodgeTimes) dodgeTimes++;
+
         }
 
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
             if (dodgeAnimator == null) {return;}
-            if (PlayerInput.DodgeButton.isDown && healthModule.iFrame)
-            {
-                dodgeAnimator.SetTrigger(IsDash.ToString("IsDash") );
-            }
+            dodgeAnimator.SetBool(IsDash, characterHub.MovementState == CharacterMovementState.Dodge);
         }
     }
+
 }

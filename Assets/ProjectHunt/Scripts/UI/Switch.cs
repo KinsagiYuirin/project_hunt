@@ -49,6 +49,7 @@ public class EndGameSetting
     [SerializeField] private CharacterHub playerStatus;
     [SerializeField] private GameObject clearPanel;
     [SerializeField] private FadeUI clearPanelFadeUI;
+    [SerializeField] private CharacterMovementModule characterMovementModule;
 
     public void Initialize()
     {
@@ -63,6 +64,7 @@ public class EndGameSetting
             return;
         }
         clearPanel.SetActive(true);
+        characterMovementModule.MoveDirection = Vector2.zero;
         playerStatus.ChangeConditionState(CharacterConditionState.CutScene);
         mono.StartCoroutine(clearPanelFadeUI.FadeIn());
     }

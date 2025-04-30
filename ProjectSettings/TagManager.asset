@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Enemy
   - EnemyAttackBox
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: PostProcessing
+    uniqueID: 2902988603
+    locked: 0
   - name: Background
     uniqueID: 3869059991
     locked: 0

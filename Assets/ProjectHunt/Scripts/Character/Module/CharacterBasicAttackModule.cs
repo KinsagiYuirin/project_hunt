@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace MadDuck.Scripts.Character.Module
 {
@@ -40,7 +41,7 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Sound")] 
         [SerializeField] private bool haveAttackSound;
         [SerializeField, ShowIf("haveAttackSound")] private AudioSource audioSource;
-        [SerializeField, ShowIf("haveAttackSound")] private AudioClip attackSound; 
+        [SerializeField, ShowIf("haveAttackSound")] private AudioClip[] attackSound; 
         
         [Title("Debug")]
         [SerializeField, DisplayAsString] protected int currentPatternIndex;
@@ -130,7 +131,7 @@ namespace MadDuck.Scripts.Character.Module
                     currentComboTime = 0;
                     currentPatternIndex = 0;
                     previousPatternIndex = -1;
-                } 
+                }
                 if (!attackReady && currentInterval < PreviousPattern.Value.interval)
                 {
                     currentInterval += Time.deltaTime;
@@ -152,7 +153,7 @@ namespace MadDuck.Scripts.Character.Module
 
             if (haveAttackSound)
             {
-                audioSource.PlayOneShot(attackSound);
+                audioSource.PlayOneShot(attackSound[Random.Range(0,attackSound.Length)]);
             }
             attackCoroutine = StartCoroutine(AttackCoroutine());
         }
@@ -160,8 +161,12 @@ namespace MadDuck.Scripts.Character.Module
         public virtual void SetAttackDirection(Vector2 direction)
         {
             if (!ModulePermitted) return;
+
+            direction = new Vector2(direction.x, 0f); // ตัดค่า Y ทิ้ง
             direction.Normalize();
-            comboParent.right = direction;
+
+            if (direction.x != 0f) // ป้องกันการตั้งค่าทิศทางเป็น (0,0)
+                comboParent.right = direction;
         }
 
         

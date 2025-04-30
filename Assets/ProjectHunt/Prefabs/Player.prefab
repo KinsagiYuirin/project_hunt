@@ -314,6 +314,9 @@ MonoBehaviour:
   attackAnimator: {fileID: 0}
   IsSwordDrawn: 0
   IsAttacking: 0
+  haveAttackSound: 0
+  audioSource: {fileID: 0}
+  attackSound: []
   currentPatternIndex: 0
   previousPatternIndex: -1
   attackReady: 0
@@ -346,11 +349,16 @@ MonoBehaviour:
   attackAnimator: {fileID: 3060655119649613860}
   IsSwordDrawn: 0
   IsAttacking: 0
+  haveAttackSound: 0
+  audioSource: {fileID: 0}
+  attackSound: []
   currentPatternIndex: 0
   previousPatternIndex: -1
   attackReady: 0
   currentInterval: 0
   currentComboTime: 0
+  IsHeavySwordDrawn: 0
+  IsHeavyAttacking: 0
   movementModule: {fileID: 0}
 --- !u!1 &2574916258185798978
 GameObject:
@@ -446,6 +454,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  haveAttackSound: 0
+  attackSound: {fileID: 0}
+  attackClips: []
+  activeWhenAttack: 0
 --- !u!1 &3104809039469596153
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +616,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  haveAttackSound: 0
+  attackSound: {fileID: 0}
+  attackClips: []
+  activeWhenAttack: 0
 --- !u!1 &4467976713449586737
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,9 +673,12 @@ MonoBehaviour:
     currentHealth: 0
     maxHealth: 0
     invincible: 0
-  startingHealth: 100
   bumpThreshold: 10
-  useMMHealthBar: 1
+  useHealthBar: 1
+  yuirinHealthBar: {fileID: 0}
+  healthScreenUI: {fileID: 0}
+  characterObject: {fileID: 0}
+  deadAnimator: {fileID: 0}
   testAmount: 0
 --- !u!1 &6143908926398813189
 GameObject:
@@ -691,6 +710,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4588824814396643922}
+  - {fileID: 626562908930361229}
   - {fileID: 3805866661087933177}
   - {fileID: 5264367422516130143}
   - {fileID: 5788411059936650687}
@@ -743,6 +763,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementModule: {fileID: 142617026950676422}
+  checkCreatureModule: {fileID: 0}
+  fullKeyboardControl: 0
   isUsingController: 0
 --- !u!1 &7984379519223223713
 GameObject:
@@ -773,8 +795,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 626562908930361229}
+  m_Children: []
   m_Father: {fileID: 2213208666196322251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &142617026950676422
@@ -798,8 +819,10 @@ MonoBehaviour:
   walkAnimator: {fileID: 3060655119649613860}
   <MovementSpeed>k__BackingField: 20
   <RunningSpeed>k__BackingField: 2
+  walkSound: {fileID: 0}
   moveDirection: {x: 0, y: 0}
   isRunning: 0
+  isBackStepping: 0
 --- !u!1 &8039790074493195838
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +917,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  haveAttackSound: 0
+  attackSound: {fileID: 0}
+  attackClips: []
+  activeWhenAttack: 0
 --- !u!1 &8131711029237154455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementModule: {fileID: 142617026950676422}
+  checkCreatureModule: {fileID: 0}
+  fullKeyboardControl: 0
   isUsingController: 0
 --- !u!1 &8842016164651774562
 GameObject:
@@ -1095,7 +1124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4588824814396643922}
+  m_Father: {fileID: 2213208666196322251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6755875235299008950
 MonoBehaviour:
@@ -1113,7 +1142,7 @@ MonoBehaviour:
   blockedMovementStates: 
   blockedActionStates: 
   blockedConditionStates: 
-  dRb2d: {fileID: 0}
+  dRb2d: {fileID: 6338695292097733196}
   dodgeAnimator: {fileID: 3060655119649613860}
   healthModule: {fileID: 8230736877032119612}
   movementModule: {fileID: 142617026950676422}

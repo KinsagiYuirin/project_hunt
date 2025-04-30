@@ -15,6 +15,7 @@ public class DamageArea : MonoBehaviour
     [SerializeField] private bool haveAttackSound;
     [SerializeField, ShowIf("haveAttackSound")] private AudioSource attackSound;
     [SerializeField] private AudioClip[] attackClips;
+    [SerializeField] private bool activeWhenAttack;
     
     public delegate void OnHit(Collider2D collider);
     public event OnHit OnHitEvent;
@@ -43,6 +44,12 @@ public class DamageArea : MonoBehaviour
             
             var clip = attackClips[Random.Range(0, attackClips.Length)];
             attackSound.PlayOneShot(clip);
+        }
+        else
+        {
+            if (activeWhenAttack)
+            {attackSound.PlayOneShot(attackClips[0]);}
+            return;
         }
     }
 }

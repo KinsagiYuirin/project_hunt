@@ -77,6 +77,11 @@ namespace MadDuck.Scripts.Character.Module
 
         protected override void LateUpdateModule()
         {
+            if (characterHub.ActionState == CharacterActionState.Basic || characterHub.ActionState == CharacterActionState.Heavy)
+            {
+                moveDirection = Vector2.zero;
+            }
+            
             if (moveDirection.magnitude <= 0)
             {
                 rb2d.linearVelocity = Vector2.zero;

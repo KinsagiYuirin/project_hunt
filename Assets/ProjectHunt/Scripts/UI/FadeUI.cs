@@ -15,6 +15,7 @@ public class FadeUI : MonoBehaviour
     {
         fadeCanvasGroup.alpha = startWithAlpha0 ? 0f : 1f;
         fadeCanvasGroup.interactable = !startWithAlpha0;
+        fadeCanvasGroup.blocksRaycasts = !startWithAlpha0;
         
         objectCanvasGroup = gameObject;
     }

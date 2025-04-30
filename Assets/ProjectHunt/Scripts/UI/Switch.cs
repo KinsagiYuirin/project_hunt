@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using MadDuck.Scripts.Character;
 using MadDuck.Scripts.Character.Module;
 using TriInspector;
@@ -20,7 +21,7 @@ public class CameraSetting
     public bool IsStart { get => isStart; set => isStart = value; }
     
     [SerializeField] private CharacterHealthModule bossHealthModule;
-    
+    [SerializeField] private BGMSystem[] bgmSystem;
 
     public void Initialize()
     {
@@ -35,6 +36,8 @@ public class CameraSetting
             cameraZoom.SwitchCamera(!isBool);
             float targetPercent = Mathf.Clamp01(bossHealthModule.pHealthData.currentHealth / bossHealthModule.pHealthData.maxHealth);
             mono.StartCoroutine(bossHealthModule.YuirinHealthBar.FillSmoothly(targetPercent));
+            bgmSystem[0].StopBGM();
+            bgmSystem[1].PlayBGM();
         }
         else { Debug.LogWarning("CameraZoom is not assigned in CameraSetting!"); }
     }

@@ -26,7 +26,6 @@ public class YuirinHealthBar : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-
     }
 
     /// <summary>
@@ -81,5 +80,11 @@ public class YuirinHealthBar : MonoBehaviour
         }
 
         fillImage.fillAmount = target;
+    }
+
+    public IEnumerator DrainSmoothly()
+    {
+        if (needFadeHpBar)
+            yield return StartCoroutine(hpBarFadeUI.FadeOut());
     }
 }

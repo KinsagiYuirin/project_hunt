@@ -77,6 +77,7 @@ namespace MadDuck.Scripts.Character.Module
         {
             if (yuirinHealthBar == null) return;
             if (!useHealthBar) return;
+            
             yuirinHealthBar.UpdateHealthUI(healthData.currentHealth, healthData.maxHealth);
         }
         
@@ -129,6 +130,7 @@ namespace MadDuck.Scripts.Character.Module
             characterObject.layer = LayerMask.NameToLayer("Dead");
             characterObject.GetComponent<Collider2D>().enabled = false;
             characterObject.GetComponent<Rigidbody2D>().simulated = false;
+            StartCoroutine(YuirinHealthBar.DrainSmoothly());
         }
 
         protected override void UpdateAnimator()

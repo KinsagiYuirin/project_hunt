@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharacterMovementModule playerMovement;
     [SerializeField] private ParticleSystem darkLightParticle;
     
+    [Title("BGM")]
+    [SerializeField] private BGMSystem[] bgmSystem;
+    
     [Title("Game Cut Scene Settings")]
     [SerializeField] private FadeSlideUI fadeSlideUI;
     [SerializeField] private bool haveCutScene;
@@ -48,6 +51,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        
+        bgmSystem[0].PlayBGM();
         
         darkLightParticle.Stop();
         
@@ -122,7 +127,6 @@ public class GameManager : MonoBehaviour
         if (cameraZoom == null) yield break;
 
         playerStatus.ChangeConditionState(CharacterConditionState.CutScene);
-        //cameraZoom.ZoomActive = false;
         cameraZoom.SwitchCamera(false);
 
         if (haveCutScene)
@@ -132,6 +136,8 @@ public class GameManager : MonoBehaviour
         
         yield return new WaitForSeconds(waitBossAnimetionTime);
         
+        bgmSystem[1].StopBGM();
+        bgmSystem[0].PlayBGM();
         darkLightParticle.Play();
         playerStatus.ChangeConditionState(CharacterConditionState.Normal);
     }

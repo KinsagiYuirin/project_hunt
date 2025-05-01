@@ -34,6 +34,7 @@ public class FadeUI : MonoBehaviour
             yield return null;
         }
         fadeCanvasGroup.interactable = true;
+        fadeCanvasGroup.blocksRaycasts = true;
         fadeCanvasGroup.alpha = 0f;
     }
     
@@ -52,5 +53,6 @@ public class FadeUI : MonoBehaviour
         }
         fadeCanvasGroup.alpha = 1f;
         fadeCanvasGroup.interactable = true;
+        fadeCanvasGroup.blocksRaycasts = true;
     }
 }

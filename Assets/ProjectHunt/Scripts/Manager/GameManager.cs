@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
         if (cameraZoom == null) yield break;
 
         playerStatus.ChangeConditionState(CharacterConditionState.CutScene);
+        enemyStatus.ChangeConditionState(CharacterConditionState.CutScene);
         cameraZoom.SwitchCamera(false);
 
         if (haveCutScene)
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
         
         yield return new WaitForSeconds(waitBossAnimetionTime);
+        enemyStatus.ChangeConditionState(CharacterConditionState.Dead);
         
         bgmSystem[1].StopBGM();
         bgmSystem[0].PlayBGM();

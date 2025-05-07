@@ -1,56 +1,42 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using MadDuck.Scripts.Character.Module;
 using MadDuck.Scripts.Utils;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
 namespace MadDuck.Scripts.Character.Enemy 
 {
-    public class TriggerDamageModule : CharacterModule
+    public class TriggerDamageModule : MonoBehaviour
     {
         [Title("Settings")]
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private float knockbackForce = 5f;
-        [SerializeField] private float knockbackDuration = 0.2f;  
-
-        [Title("Debug")]
-        [SerializeField, DisplayAsString] private Rigidbody2D targetRb;
+        [SerializeField] private float stayDurationThreshold = 1.5f; // เวลาที่ให้ยืนอยู่ก่อนเด้ง
+        
+        [SerializeField] private Rigidbody2D player;
+        [SerializeField] private Transform target;
+        
+        private Dictionary<Collider2D, float> stayTimers = new();
+        
+        private void Update()
+        {
+            //Knockback(player, target.position );
+        }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (characterHub.CharacterType is not CharacterType.Enemy) return;
-
-            if (LayerMaskUtils.IsInLayerMask(other.gameObject.layer, targetLayer))
-            {
-                targetRb = other.GetComponent<Rigidbody2D>(); // ดึง Rigidbody ของ Player
-
-                if (targetRb != null)
-                {
-                    Knockback(targetRb, other.transform.position);
-                    Debug.Log("🎯 Hit Player! Applying Knockback.");
-                }
-                else
-                {
-                    Debug.LogError("❌ No Rigidbody2D found on the target!");
-                }
-            }
+            if (!other.CompareTag("Player")) return;
+            Knockback(player, other.transform.position);
         }
-        
-        private void Knockback(Rigidbody2D targetRb, Vector2 targetPosition)
-        {
-            Vector2 knockbackDirection = (targetPosition - (Vector2)transform.position).normalized;
-            StartCoroutine(ApplyKnockback(targetRb, knockbackDirection));
-        }
-        
-        private IEnumerator ApplyKnockback(Rigidbody2D targetRbP, Vector2 direction)
-        {
-            targetRbP.linearVelocity = Vector2.zero; // รีเซ็ตความเร็ว
-            targetRbP.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
 
-            yield return new WaitForSeconds(knockbackDuration);
+        private void Knockback(Rigidbody2D rb, Vector2 targetPosition)
+        {
+            Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
         }
     }
 }

@@ -38,7 +38,7 @@ public class GameMenu : MonoBehaviour
         }
     }
 
-    public void ContinueButton()
+    /*public void ContinueButton()
     {
         radialFader.StartRadialFadeIn(0f);
         StartCoroutine(ContinueIE());
@@ -48,5 +48,32 @@ public class GameMenu : MonoBehaviour
     {
         yield return StartCoroutine(fadeUI[2].FadeOut());
         SceneManager.LoadScene("EndCredit");
+    }*/
+    
+    public void RestartButton2()
+    {
+        radialFader.StartRadialFadeIn(0f);
+        StartCoroutine(ButtonSet2(1));
+    }
+    
+    public void MainMenuButton2()
+    {
+        radialFader.StartRadialFadeIn(0f);
+        StartCoroutine(ButtonSet2(2));
+    }
+    
+    IEnumerator ButtonSet2(int buttonIndex)
+    {
+        yield return StartCoroutine(fadeUI[1].FadeOut());
+
+        switch (buttonIndex)
+        {
+            case 1:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                break;
+            case 2:
+                SceneManager.LoadScene("MainMenu");
+                break;
+        }
     }
 }

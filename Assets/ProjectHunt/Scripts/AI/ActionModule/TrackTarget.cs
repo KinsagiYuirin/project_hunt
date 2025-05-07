@@ -1,5 +1,6 @@
 using System;
 using MadDuck.Scripts.Character;
+using MadDuck.Scripts.Character.Enemy;
 using MadDuck.Scripts.Character.Module;
 using TriInspector;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class TrackTarget : CharacterModule
 
     [SerializeField] private CharacterBasicAttackModule isBasicAttack;
     [SerializeField] private CharacterHeavyAttackModule isHeavyAttack;
+    
+    [SerializeField] private TriggerDamageModule triggerDamageModule;
     
     [Title("Set Range")] 
     [SerializeField] private float atkRange;

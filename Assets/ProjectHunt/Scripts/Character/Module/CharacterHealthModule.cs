@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using MadDuck.Scripts.Manangers;
 using MadDuck.Scripts.Utils;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace MadDuck.Scripts.Character.Module
 {
@@ -33,6 +35,10 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private GameObject characterObject;
         
         [SerializeField] private Animator deadAnimator;
+        
+        [SerializeField] private SpriteRenderer spriteImage;
+        [SerializeField] private Color _redColor = Color.red;
+        [SerializeField] private Color _whiteColor = Color.white;
         
         /*
         [SerializeField, ShowIf(nameof(useMMHealthBar))] 
@@ -70,6 +76,10 @@ namespace MadDuck.Scripts.Character.Module
             {
                 Die();
             }
+            if (amount < 0) // โดนดาเมจ
+            {
+                StartCoroutine(FlashRed());
+            }
             UpdateHealthBar();
         }
 
@@ -80,7 +90,6 @@ namespace MadDuck.Scripts.Character.Module
             
             yuirinHealthBar.UpdateHealthUI(healthData.currentHealth, healthData.maxHealth);
         }
-        
         
         /*
         public virtual void UpdateHealthBar()
@@ -97,7 +106,6 @@ namespace MadDuck.Scripts.Character.Module
                 {
                     case true:
                         
-                        /*
                         var progressTracker = healthBar.ProgressTracker;
                         progressTracker.BumpScaleOnChange = shouldBump;
                         progressTracker.LerpForegroundBar = shouldBump;
@@ -131,6 +139,13 @@ namespace MadDuck.Scripts.Character.Module
             characterObject.GetComponent<Collider2D>().enabled = false;
             characterObject.GetComponent<Rigidbody2D>().simulated = false;
             StartCoroutine(YuirinHealthBar.DrainSmoothly());
+        }
+        
+        private IEnumerator FlashRed()
+        {
+            spriteImage.color = _redColor;
+            yield return new WaitForSeconds(0.1f);
+            spriteImage.color = _whiteColor;
         }
 
         protected override void UpdateAnimator()

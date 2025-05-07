@@ -11,7 +11,7 @@ namespace MadDuck.Scripts.Character.Module
     {
         [Title("Heavy Attack Settings")]
         private static readonly int IsDrawnHeavyAttack = Animator.StringToHash("IsDrawnHeavyAttack");
-        private static readonly int IsHeavyAttack = Animator.StringToHash("IsHeavyAttack");
+        private static readonly int IsHeavyAttack = Animator.StringToHash("IsHeavyAttack 0");
 
         [SerializeField, DisplayAsString] private bool IsHeavySwordDrawn;
         [SerializeField, DisplayAsString] private bool IsHeavyAttacking;
@@ -35,14 +35,11 @@ namespace MadDuck.Scripts.Character.Module
             
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
+            attackAnimator.SetTrigger(IsHeavyAttack);
             characterHub.ChangeActionState(CharacterActionState.Heavy);
-            StepAnimation(0);
             yield return new WaitForSeconds(CurrentPattern.Value.delay);
-            StepAnimation(1);
             CurrentPattern.Value.damageArea.SetActive(true);
-            StepAnimation(2);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
-            StepAnimation(3);
             CurrentPattern.Value.damageArea.SetActive(false);
             characterHub.ChangeActionState(CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
@@ -50,34 +47,6 @@ namespace MadDuck.Scripts.Character.Module
             attackReady = false;
             attackCoroutine = null;
             movementModule.isRunning = false;
-        }
-
-        protected override void StepAnimation(int step)
-        {
-            if (attackAnimator == null) {return;}
-            switch (step)
-            {
-                case 0:
-                    IsHeavySwordDrawn = true;
-                    break;
-                case 1:
-                    IsHeavySwordDrawn = false;
-                    break;
-                case 2:
-                    IsHeavyAttacking = true;
-                    break;
-                case 3:
-                    IsHeavyAttacking = false;
-                    break;
-            }
-        }
-
-        protected override void UpdateAnimator()
-        {
-            base.UpdateAnimator();
-            if (attackAnimator == null) {return;}
-            attackAnimator.SetBool(IsDrawnHeavyAttack, IsHeavySwordDrawn);    
-            attackAnimator.SetBool(IsHeavyAttack, IsHeavyAttacking);
         }
     }
 }

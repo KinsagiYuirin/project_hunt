@@ -34,7 +34,7 @@ namespace MadDuck.Scripts.Character.Module
         [Title("Animator")]
         [SerializeField] protected Animator attackAnimator;
         private static readonly int IsDrawnLightSword = Animator.StringToHash("IsDrawnLightAttack");
-        private static readonly int IsLightAttack = Animator.StringToHash("IsLightAttack");
+        private static readonly int IsLightAttack = Animator.StringToHash("IsLightAttack 0");
         [SerializeField, DisplayAsString] private bool IsSwordDrawn;
         [SerializeField, DisplayAsString] private bool IsAttacking;
 
@@ -181,40 +181,17 @@ namespace MadDuck.Scripts.Character.Module
             
             if (CurrentPattern == null) yield break;
             currentComboTime = 0;
+            attackAnimator.SetTrigger(IsLightAttack);
             characterHub.ChangeActionState(CharacterActionState.Basic);
-            StepAnimation(0);
             yield return new WaitForSeconds(CurrentPattern.Value.delay);
-            StepAnimation(1);
             CurrentPattern.Value.damageArea.SetActive(true);
-            StepAnimation(2);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
-            StepAnimation(3);
             CurrentPattern.Value.damageArea.SetActive(false);
             characterHub.ChangeActionState(CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;
             attackReady = false;
             attackCoroutine = null;
-        }
-
-        protected virtual void StepAnimation(int step)
-        {
-            if (attackAnimator == null) {return;}
-            switch (step)
-            {
-                case 0:
-                    IsSwordDrawn = true;
-                    break;
-                case 1:
-                    IsSwordDrawn = false;
-                    break;
-                case 2:
-                    IsAttacking = true;
-                    break;
-                case 3:
-                    IsAttacking = false;
-                    break;
-            }
         }
         
         protected override void UpdateAnimator()
@@ -225,8 +202,6 @@ namespace MadDuck.Scripts.Character.Module
                 Debug.LogWarning("Attack animator is not assigned.");
                 return;
             }
-            attackAnimator.SetBool(IsDrawnLightSword, IsSwordDrawn);    
-            attackAnimator.SetBool(IsLightAttack, IsAttacking);
         }
     }
 }

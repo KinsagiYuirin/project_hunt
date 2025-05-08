@@ -10,35 +10,31 @@ using UnityEngine.UI;
 namespace MadDuck.Scripts.Character.Module
 {
     [Serializable]
-    public record HealthData
+    public record ArmorData
     {
-        public float currentHealth;
-        public float maxHealth;
+        public float currentArmor;
+        public float maxArmor;
         public bool invincible;
     }
     /// <summary>
     /// Module responsible for handling character health.
     /// </summary>
-    public class CharacterHealthModule : CharacterModule, IDamageable
+    public class CharacterArmorModule : CharacterModule, IDamageable
     {
         [Title("Health Settings")] 
         [SerializeField] private DamageType receiveDamageType;
-        [SerializeField] private HealthData healthData = new HealthData();
-        public HealthData pHealthData => healthData;
+        [SerializeField] private ArmorData armorData = new ArmorData();
+        public ArmorData PArmorData => armorData;
         [SerializeField] private float bumpThreshold = 10f;
         [SerializeField] private bool useHealthBar = true;
         
         [SerializeField] private YuirinHealthBar yuirinHealthBar;
         public YuirinHealthBar YuirinHealthBar => yuirinHealthBar;
         
-        [SerializeField] private GameObject healthScreenUI;
+        [SerializeField] private GameObject armorScreenUI;
         [SerializeField] private GameObject characterObject;
         
-        [SerializeField] private Animator deadAnimator;
-        
-        [SerializeField] private SpriteRenderer spriteImage;
-        [SerializeField] private Color _redColor = Color.red;
-        [SerializeField] private Color _whiteColor = Color.white;
+        [SerializeField] private Animator animation;
         
         /*
         [SerializeField, ShowIf(nameof(useMMHealthBar))] 
@@ -46,51 +42,49 @@ namespace MadDuck.Scripts.Character.Module
         */
 
         [Title("Debug")] 
-        [SerializeField, DisplayAsString] private bool iFrame;
-        public bool IFrame {get => iFrame; set => iFrame = value; }
-        
-        [SerializeField] private float testAmount;
-        [Button("Test Change Health")] 
-        private void TestChangeHealth() => ChangeHealth(testAmount);
+        [SerializeField] 
+        private float testAmount;
+        [Button("Test Change Armor")] 
+        private void TestChangeArmor() => ChangeArmor(testAmount);
         private float _previousChange;
 
         private void Start()
         {
-            healthData.currentHealth = healthData.maxHealth;
-            iFrame = false;
+            
         }
 
+        public void GetArmor()
+        {
+            armorData.currentArmor = armorData.maxArmor;
+            characterHub.ChangeConditionState(CharacterConditionState.Armor);
+        }
+        
         private void OnHealthDataChanged(HealthData previousvalue, HealthData newvalue)
         {
             _previousChange = newvalue.currentHealth - previousvalue.currentHealth;
             //UpdateHealthBar();
         }
-        
+
         public void ReceiveDamage(float amount, DamageData data)
         {
             if (data.type != receiveDamageType)
             {
-                ChangeHealth(amount);
+                ChangeArmor(amount);
             }
         }
 
-        public virtual void ChangeHealth(float amount)
+        protected virtual void ChangeArmor(float amount)
         {
-            if (iFrame) return;
             if (!ModulePermitted) return;
-            if (healthData.invincible) return;
-            if (characterHub.ConditionState == CharacterConditionState.Armor) return;
+            if (armorData.invincible) return;
+            if (characterHub.ConditionState != CharacterConditionState.Armor) return;
             
             _previousChange = amount;
-            healthData.currentHealth += amount;
-            healthData.currentHealth = Mathf.Clamp(healthData.currentHealth, 0, healthData.maxHealth);
-            if (healthData.currentHealth <= 0)
+            armorData.currentArmor += amount;
+            armorData.currentArmor = Mathf.Clamp(armorData.currentArmor, 0, armorData.maxArmor);
+            if (armorData.currentArmor <= 0)
             {
-                Die();
-            }
-            if (amount < 0) // โดนดาเมจ
-            {
-                StartCoroutine(FlashRed());
+                IsArmorBroken();
             }
             UpdateHealthBar();
         }
@@ -100,7 +94,7 @@ namespace MadDuck.Scripts.Character.Module
             if (yuirinHealthBar == null) return;
             if (!useHealthBar) return;
             
-            yuirinHealthBar.UpdateHealthUI(healthData.currentHealth, healthData.maxHealth);
+            yuirinHealthBar.UpdateHealthUI(armorData.currentArmor, armorData.maxArmor);
         }
         
         /*
@@ -143,28 +137,18 @@ namespace MadDuck.Scripts.Character.Module
         }
         */
         
-        protected virtual void Die()
+        protected virtual void IsArmorBroken()
         {
             if (!ModulePermitted) return;
-            characterHub.ChangeConditionState(CharacterConditionState.Dead);
-            characterObject.layer = LayerMask.NameToLayer("Dead");
-            characterObject.GetComponent<Collider2D>().enabled = false;
-            characterObject.GetComponent<Rigidbody2D>().simulated = false;
+            characterHub.ChangeConditionState(CharacterConditionState.Normal);
             StartCoroutine(YuirinHealthBar.DrainSmoothly());
-        }
-        
-        private IEnumerator FlashRed()
-        {
-            spriteImage.color = _redColor;
-            yield return new WaitForSeconds(0.1f);
-            spriteImage.color = _whiteColor;
         }
 
         protected override void UpdateAnimator()
         {
             base.UpdateAnimator();
-            if (deadAnimator == null) return;
-            deadAnimator.SetBool("IsDead", characterHub.ConditionState == CharacterConditionState.Dead);
+            if (animation == null) return;
+            //animation.SetBool("IsDead", characterHub.ConditionState == CharacterConditionState.Dead);
         }
     }
 }

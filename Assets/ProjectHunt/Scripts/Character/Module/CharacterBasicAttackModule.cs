@@ -8,6 +8,26 @@ using Random = UnityEngine.Random;
 
 namespace MadDuck.Scripts.Character.Module
 {
+    
+    [Flags]
+    public enum DamageType
+    {
+        None,
+        LightHit,
+        HeavyHit
+    }
+    
+    public struct DamageData
+    {
+        public DamageType type;
+    }
+    
+    public interface IDamageable
+    {
+        void ReceiveDamage(float amount, DamageData data);
+    }
+
+    
     [Serializable]
     public struct AttackPattern
     {
@@ -24,6 +44,7 @@ namespace MadDuck.Scripts.Character.Module
     public class CharacterBasicAttackModule : CharacterModule
     {
         [Title("Settings")]
+        [SerializeField] protected DamageType damageType;
         [SerializeField] private Transform comboParent;
         [TableList(Draggable = true,
             HideAddButton = false,
@@ -101,9 +122,21 @@ namespace MadDuck.Scripts.Character.Module
         protected virtual void OnHit(Collider2D collider)
         {
             if (!collider.TryGetComponent(out CharacterHub characterHub)) return;
+            
+            DamageData data = new DamageData
+            {
+                type = damageType,
+            };
+            
+            var armorModule = characterHub.FindModuleOfType<CharacterArmorModule>();
+            if (armorModule && CurrentPattern != null)
+                //armorModule.ChangeArmor(-CurrentPattern.Value.damage);
+                armorModule.ReceiveDamage(-CurrentPattern.Value.damage, data);
+            
             var healthModule = characterHub.FindModuleOfType<CharacterHealthModule>();
             if (healthModule && CurrentPattern != null) 
-                healthModule.ChangeHealth(-CurrentPattern.Value.damage);
+                //healthModule.ChangeHealth(-CurrentPattern.Value.damage);
+                healthModule.ReceiveDamage(-CurrentPattern.Value.damage, data);
         }
         
         protected override void HandleInput()

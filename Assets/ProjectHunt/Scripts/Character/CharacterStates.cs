@@ -60,6 +60,7 @@ namespace MadDuck.Scripts.Character
     public enum CharacterConditionState
     {
         Normal,
+        Armor,
         Stunned,
         Dead,
         CutScene

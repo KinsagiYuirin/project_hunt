@@ -76,7 +76,7 @@ namespace MadDuck.Scripts.Character.Module
             characterHub.ChangeMovementState(CharacterMovementState.Dodge);
             dodgeTimes--;
 
-            healthModule.iFrame = true;
+            healthModule.IFrame = true;
             Debug.Log("iFrame is true");
 
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
@@ -90,7 +90,7 @@ namespace MadDuck.Scripts.Character.Module
                 yield return null;
             }
 
-            healthModule.iFrame = false;
+            healthModule.IFrame = false;
             Debug.Log("iFrame is false");
 
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);

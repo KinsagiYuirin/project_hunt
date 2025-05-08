@@ -4,11 +4,12 @@ using TriInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 [RequireComponent(typeof(Collider2D))]
 public class DamageArea : MonoBehaviour
 {
+    [Title("Settings")]
     [SerializeField] protected LayerMask targetLayer;
-
     protected Collider2D damageCollider;
     
     [Title("Audio")]

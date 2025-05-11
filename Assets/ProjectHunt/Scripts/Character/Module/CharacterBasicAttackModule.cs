@@ -35,6 +35,7 @@ namespace MadDuck.Scripts.Character.Module
         [Group("Damage"), Min(0)] public float damage;
         [Group("Timing"), Min(0)] public float delay;
         [Group("Timing"), Min(0)] public float duration;
+        [Group("Timing"), Min(0)] public float recoveryUnit;
         [Group("Timing"), Min(0)] public float interval;
         [Group("Timing"), Min(0)] public float resetComboTime;
     }
@@ -220,6 +221,7 @@ namespace MadDuck.Scripts.Character.Module
             CurrentPattern.Value.damageArea.SetActive(true);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
             CurrentPattern.Value.damageArea.SetActive(false);
+            yield return new WaitForSeconds(CurrentPattern.Value.recoveryUnit);
             characterHub.ChangeActionState(CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;

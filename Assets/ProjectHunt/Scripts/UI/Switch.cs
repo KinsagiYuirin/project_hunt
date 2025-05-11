@@ -21,6 +21,7 @@ public class CameraSetting
     public bool IsStart { get => isStart; set => isStart = value; }
     
     [SerializeField] private CharacterHealthModule bossHealthModule;
+    [SerializeField] private CharacterArmorModule bossArmorModule;
     [SerializeField] private BGMSystem[] bgmSystem;
 
     public void Initialize()
@@ -35,7 +36,9 @@ public class CameraSetting
             isStart = true;
             cameraZoom.SwitchCamera(!isBool);
             float targetPercent = Mathf.Clamp01(bossHealthModule.pHealthData.currentHealth / bossHealthModule.pHealthData.maxHealth);
+            float targetArmorPercent = Mathf.Clamp01(bossArmorModule.PArmorData.currentArmor / bossArmorModule.PArmorData.maxArmor);
             mono.StartCoroutine(bossHealthModule.YuirinHealthBar.FillSmoothly(targetPercent));
+            mono.StartCoroutine(bossArmorModule.YuirinHealthBar.FillSmoothly(targetArmorPercent));
             bgmSystem[0].StopBGM();
             bgmSystem[1].PlayBGM();
         }

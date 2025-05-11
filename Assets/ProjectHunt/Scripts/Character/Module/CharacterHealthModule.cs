@@ -40,6 +40,10 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private Color _redColor = Color.red;
         [SerializeField] private Color _whiteColor = Color.white;
         
+        [Title("Armor Settings")]
+        [SerializeField] private bool haveArmor;
+        [SerializeField, ShowIf("haveArmor")] private CharacterArmorModule armorModule;
+        
         /*
         [SerializeField, ShowIf(nameof(useMMHealthBar))] 
         private MMHealthBar healthBar;
@@ -58,6 +62,10 @@ namespace MadDuck.Scripts.Character.Module
         {
             healthData.currentHealth = healthData.maxHealth;
             iFrame = false;
+            if (yuirinHealthBar != null)
+            {
+                yuirinHealthBar.CurrentHealth = healthData.maxHealth;
+            }
         }
 
         private void OnHealthDataChanged(HealthData previousvalue, HealthData newvalue)
@@ -79,7 +87,10 @@ namespace MadDuck.Scripts.Character.Module
             if (iFrame) return;
             if (!ModulePermitted) return;
             if (healthData.invincible) return;
-            if (characterHub.ConditionState == CharacterConditionState.Armor) return;
+            //if (characterHub.ConditionState == CharacterConditionState.Armor) return;
+            if (haveArmor)
+                if (armorModule.HaveArmor)
+                    return;
             
             _previousChange = amount;
             healthData.currentHealth += amount;

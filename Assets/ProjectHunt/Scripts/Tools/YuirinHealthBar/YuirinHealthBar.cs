@@ -7,8 +7,8 @@ public class YuirinHealthBar : MonoBehaviour
 {
     [Title("Health Bar")]
     [SerializeField] private Image fillImage;
-    [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth;
+    public float CurrentHealth{get => currentHealth; set => currentHealth = value;}
     [SerializeField] private float updateSpeed = 0.5f;
     [SerializeField] private float currentHealthPercent = 1f;
 
@@ -25,7 +25,7 @@ public class YuirinHealthBar : MonoBehaviour
     
     private void Start()
     {
-        currentHealth = maxHealth;
+        
     }
 
     /// <summary>

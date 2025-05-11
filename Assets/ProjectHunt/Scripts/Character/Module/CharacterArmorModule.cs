@@ -34,6 +34,9 @@ namespace MadDuck.Scripts.Character.Module
         [SerializeField] private GameObject armorScreenUI;
         [SerializeField] private GameObject characterObject;
         
+        [SerializeField] private bool haveArmor;
+        public bool HaveArmor => haveArmor;
+        
         [SerializeField] private Animator animation;
         
         /*
@@ -50,13 +53,18 @@ namespace MadDuck.Scripts.Character.Module
 
         private void Start()
         {
-            
+            GetArmor();
+            if (yuirinHealthBar != null)
+            {
+                yuirinHealthBar.CurrentHealth = armorData.maxArmor;
+            }
         }
 
         public void GetArmor()
         {
             armorData.currentArmor = armorData.maxArmor;
-            characterHub.ChangeConditionState(CharacterConditionState.Armor);
+            haveArmor = true;
+            //characterHub.ChangeConditionState(CharacterConditionState.Armor);
         }
         
         private void OnHealthDataChanged(HealthData previousvalue, HealthData newvalue)
@@ -68,16 +76,15 @@ namespace MadDuck.Scripts.Character.Module
         public void ReceiveDamage(float amount, DamageData data)
         {
             if (data.type != receiveDamageType)
-            {
-                ChangeArmor(amount);
-            }
+                return;
+            ChangeArmor(amount);
         }
 
-        protected virtual void ChangeArmor(float amount)
+        public virtual void ChangeArmor(float amount)
         {
             if (!ModulePermitted) return;
             if (armorData.invincible) return;
-            if (characterHub.ConditionState != CharacterConditionState.Armor) return;
+            //if (characterHub.ConditionState != CharacterConditionState.Armor) return;
             
             _previousChange = amount;
             armorData.currentArmor += amount;
@@ -140,8 +147,9 @@ namespace MadDuck.Scripts.Character.Module
         protected virtual void IsArmorBroken()
         {
             if (!ModulePermitted) return;
-            characterHub.ChangeConditionState(CharacterConditionState.Normal);
+            //characterHub.ChangeConditionState(CharacterConditionState.Normal);
             StartCoroutine(YuirinHealthBar.DrainSmoothly());
+            haveArmor = false;
         }
 
         protected override void UpdateAnimator()

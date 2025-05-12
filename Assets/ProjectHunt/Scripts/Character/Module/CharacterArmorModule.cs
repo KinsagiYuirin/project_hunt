@@ -84,7 +84,7 @@ namespace MadDuck.Scripts.Character.Module
             else if (data.type == receiveHaftDamageType)
             {
                 if (!haveArmor) return;
-                ChangeArmor(-amount / 2);
+                ChangeArmor(amount / 2);
             }
         }
 

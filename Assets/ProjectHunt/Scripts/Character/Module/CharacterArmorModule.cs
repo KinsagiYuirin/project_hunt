@@ -23,6 +23,7 @@ namespace MadDuck.Scripts.Character.Module
     {
         [Title("Health Settings")] 
         [SerializeField] private DamageType receiveDamageType;
+        [SerializeField] private DamageType receiveHaftDamageType;
         [SerializeField] private ArmorData armorData = new ArmorData();
         public ArmorData PArmorData => armorData;
         [SerializeField] private float bumpThreshold = 10f;
@@ -75,9 +76,16 @@ namespace MadDuck.Scripts.Character.Module
 
         public void ReceiveDamage(float amount, DamageData data)
         {
-            if (data.type != receiveDamageType) return;
-            if (!haveArmor) return;
-            ChangeArmor(amount);
+            if (data.type == receiveDamageType)
+            {
+                if (!haveArmor) return;
+                ChangeArmor(amount);
+            }
+            else if (data.type == receiveHaftDamageType)
+            {
+                if (!haveArmor) return;
+                ChangeArmor(-amount / 2);
+            }
         }
 
         public virtual void ChangeArmor(float amount)

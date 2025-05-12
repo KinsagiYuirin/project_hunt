@@ -12,6 +12,11 @@ public class DamageArea : MonoBehaviour
     [SerializeField] protected LayerMask targetLayer;
     protected Collider2D damageCollider;
     
+    [SerializeField] protected bool shakeCamera;
+    [SerializeField, ShowIf("shakeCamera")] protected ScreenShake screenShake;
+    [SerializeField, ShowIf("shakeCamera")] protected float shakeDuration = 0.2f;
+    [SerializeField, ShowIf("shakeCamera")] protected float shakeMagnitude = 0.4f;
+    
     [Title("Audio")]
     [SerializeField] private bool haveAttackSound;
     [SerializeField, ShowIf("haveAttackSound")] private AudioSource attackSound;
@@ -39,6 +44,11 @@ public class DamageArea : MonoBehaviour
     }
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (shakeCamera)
+        {
+            screenShake.Shake(shakeDuration, shakeMagnitude);
+        }
+        
         if (LayerMaskUtils.IsInLayerMask(other.gameObject.layer, targetLayer))
         {
             OnHitEvent?.Invoke(other);

@@ -41,6 +41,7 @@ namespace MadDuck.Scripts.Character.Module
             CurrentPattern.Value.damageArea.SetActive(true);
             yield return new WaitForSeconds(CurrentPattern.Value.duration);
             CurrentPattern.Value.damageArea.SetActive(false);
+            yield return new WaitForSeconds(CurrentPattern.Value.recoveryUnit);
             characterHub.ChangeActionState(CharacterActionState.None);
             previousPatternIndex = currentPatternIndex;
             currentPatternIndex = (currentPatternIndex + 1) % attackPatterns.Count;

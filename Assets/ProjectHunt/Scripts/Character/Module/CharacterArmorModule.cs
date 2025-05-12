@@ -75,8 +75,8 @@ namespace MadDuck.Scripts.Character.Module
 
         public void ReceiveDamage(float amount, DamageData data)
         {
-            if (data.type != receiveDamageType)
-                return;
+            if (data.type != receiveDamageType) return;
+            if (!haveArmor) return;
             ChangeArmor(amount);
         }
 
